@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gourmet", "Gourmet\Gourmet.csproj", "{E678110F-3A8F-497D-A9C5-932C337142C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gourmet.Tests", "Gourmet.Tests\Gourmet.Tests.csproj", "{F5C14498-4397-4539-A2AD-8FBAFF34650B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E678110F-3A8F-497D-A9C5-932C337142C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E678110F-3A8F-497D-A9C5-932C337142C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E678110F-3A8F-497D-A9C5-932C337142C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E678110F-3A8F-497D-A9C5-932C337142C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
