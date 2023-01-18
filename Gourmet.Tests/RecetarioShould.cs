@@ -1,16 +1,6 @@
 using Xunit;
 using Gourmet;
 
-enum GrupoALimenticio
-{
-    lacteos,
-    carnes,
-    legumbres,
-    vegetales,
-    frutas,
-    cereales
-}
-
 public class RecetarioShould 
 {
 
