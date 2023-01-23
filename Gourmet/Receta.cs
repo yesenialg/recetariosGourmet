@@ -39,7 +39,7 @@ public class Receta
         return false;
     }
 
-    public bool presenciaDeGrupoAlimenticio(string grupo)
+    public bool presenciaDeGrupoAlimenticio(Tipo grupo)
     {
         foreach (KeyValuePair<Ingrediente, double> i in Ingredientes)
         {

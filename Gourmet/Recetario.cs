@@ -14,6 +14,7 @@ public class Recetario
 
     public int cantidadRecetas()
     {
+        Console.WriteLine("AAAAAAAAAA", Recetas.Count);
         return Recetas.Count;
     }
 }

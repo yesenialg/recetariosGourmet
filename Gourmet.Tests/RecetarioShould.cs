@@ -1,27 +1,30 @@
 using Xunit;
 using Gourmet;
 
-enum GrupoALimenticio
-{
-    lacteos,
-    carnes,
-    legumbres,
-    vegetales,
-    frutas,
-    cereales
-}
-
 public class RecetarioShould 
 {
 
     [Fact]
     public void TestCantidadRecetas()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var pechuga = new Ingrediente("Pechuga", 115, "unidad", GrupoALimenticio.carnes + "");
-        var cebolla = new Ingrediente("Cebolla", 95, "unidad", GrupoALimenticio.legumbres + "");
+
+        var lacteos = new Tipo("lacteos");
+        var carnes = new Tipo("carnes");
+        var legumbres = new Tipo("legumbres");
+        var vegetales = new Tipo("vegetales");
+        var frutas = new Tipo("frutas");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+        var cn = new Unidad("cantidad necesaria");
+
+        var mani = new Ingrediente("Mani", 5, gramos, cereales);
+        var arroz = new Ingrediente("Arroz", 180, libra, cereales);
+        var brocoli = new Ingrediente("Brocoli", 145, unidad, vegetales);
+        var pechuga = new Ingrediente("Pechuga", 115, unidad, carnes);
+        var cebolla = new Ingrediente("Cebolla", 95, unidad, legumbres);
 
         Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
         {
@@ -45,7 +48,5 @@ public class RecetarioShould
         int cantidad = recetario.cantidadRecetas();
 
         Assert.Equal(2, cantidad);
-
-
     }
 }
