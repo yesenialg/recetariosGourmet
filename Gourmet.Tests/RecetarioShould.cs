@@ -20,13 +20,13 @@ public class RecetarioShould
         var unidad = new Unidad("unidad");
         var cn = new Unidad("cantidad necesaria");
 
-        var mani = new Ingrediente("Mani", 5, gramos, cereales);
-        var arroz = new Ingrediente("Arroz", 180, libra, cereales);
-        var brocoli = new Ingrediente("Brocoli", 145, unidad, vegetales);
-        var pechuga = new Ingrediente("Pechuga", 115, unidad, carnes);
-        var cebolla = new Ingrediente("Cebolla", 95, unidad, legumbres);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
+        var cebolla = new IngredienteCuantitativo("Cebolla", 95, unidad, legumbres);
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -34,7 +34,7 @@ public class RecetarioShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<Ingrediente, double> ingredientes2 = new Dictionary<Ingrediente, double>
+        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
         {
             { pechuga, 1},
             { cebolla, 1},

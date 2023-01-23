@@ -17,13 +17,12 @@ public class RecetaShould
         var gramos = new Unidad("gramos");
         var libra = new Unidad("libra");
         var unidad = new Unidad("unidad");
-        var cn = new Unidad("cantidad necesaria");
 
-        var mani = new Ingrediente("Mani", 5, gramos, cereales);
-        var arroz = new Ingrediente("Arroz", 180, libra, cereales);
-        var brocoli = new Ingrediente("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -49,13 +48,12 @@ public class RecetaShould
         var gramos = new Unidad("gramos");
         var libra = new Unidad("libra");
         var unidad = new Unidad("unidad");
-        var cn = new Unidad("cantidad necesaria");
 
-        var mani = new Ingrediente("Mani", 5, gramos, cereales);
-        var arroz = new Ingrediente("Arroz", 180, libra, cereales);
-        var brocoli = new Ingrediente("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -82,13 +80,12 @@ public class RecetaShould
         var gramos = new Unidad("gramos");
         var libra = new Unidad("libra");
         var unidad = new Unidad("unidad");
-        var cn = new Unidad("cantidad necesaria");
 
-        var mani = new Ingrediente("Mani", 5, gramos, cereales);
-        var arroz = new Ingrediente("Arroz", 180, libra, cereales);
-        var brocoli = new Ingrediente("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -115,13 +112,12 @@ public class RecetaShould
         var gramos = new Unidad("gramos");
         var libra = new Unidad("libra");
         var unidad = new Unidad("unidad");
-        var cn = new Unidad("cantidad necesaria");
 
-        var mani = new Ingrediente("Mani", 5, gramos, cereales);
-        var arroz = new Ingrediente("Arroz", 180, libra, cereales);
-        var brocoli = new Ingrediente("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
