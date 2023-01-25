@@ -7,11 +7,22 @@ public class RecetaShould
     [Fact]
     public void TestCantidadIngredientes()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
+        var lacteos = new Tipo("lacteos");
+        var carnes = new Tipo("carnes");
+        var legumbres = new Tipo("legumbres");
+        var vegetales = new Tipo("vegetales");
+        var frutas = new Tipo("frutas");
+        var cereales = new Tipo("cereales");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -27,11 +38,22 @@ public class RecetaShould
     [Fact]
     public void TestCantidadCalorias()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
+        var lacteos = new Tipo("lacteos");
+        var carnes = new Tipo("carnes");
+        var legumbres = new Tipo("legumbres");
+        var vegetales = new Tipo("vegetales");
+        var frutas = new Tipo("frutas");
+        var cereales = new Tipo("cereales");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -47,11 +69,23 @@ public class RecetaShould
     [Fact]
     public void TestPresenciaDeIngredientes()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var lacteos = new Tipo("lacteos");
+        var carnes = new Tipo("carnes");
+        var legumbres = new Tipo("legumbres");
+        var vegetales = new Tipo("vegetales");
+        var frutas = new Tipo("frutas");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -67,11 +101,23 @@ public class RecetaShould
     [Fact]
     public void TestPresenciaDeGrupoAlimenticio()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var lacteos = new Tipo("lacteos");
+        var carnes = new Tipo("carnes");
+        var legumbres = new Tipo("legumbres");
+        var vegetales = new Tipo("vegetales");
+        var frutas = new Tipo("frutas");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -79,7 +125,7 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        bool cantidad = receta1.presenciaDeGrupoAlimenticio(GrupoALimenticio.vegetales+"");
+        bool cantidad = receta1.presenciaDeGrupoAlimenticio(vegetales);
 
         Assert.Equal(true, cantidad);
     }

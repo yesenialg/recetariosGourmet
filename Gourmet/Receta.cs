@@ -4,9 +4,9 @@ using Gourmet;
 public class Receta
 {
     public string Titulo { get; set; }
-    public Dictionary<Ingrediente, double> Ingredientes { get; set; }
+    public Dictionary<IngredienteCuantitativo, double> Ingredientes { get; set; }
 
-    public Receta(string titulo, Dictionary<Ingrediente, double> ingredientes)
+    public Receta(string titulo, Dictionary<IngredienteCuantitativo, double> ingredientes)
     {
         this.Titulo = titulo;
         this.Ingredientes = ingredientes;
@@ -15,9 +15,9 @@ public class Receta
     public double cantidadCalorias()
     {
         var cantidadCalorias = 0.0;
-        foreach (KeyValuePair<Ingrediente, double> ingrediente in Ingredientes)
+        foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in Ingredientes)
         {
-            cantidadCalorias += ingrediente.Key.Caloriasporunidad * ingrediente.Value;
+            cantidadCalorias += ingrediente.Key.calcularCalorias(ingrediente.Value);
         }
         return cantidadCalorias;
     }
@@ -27,9 +27,9 @@ public class Receta
         return Ingredientes.Count;
     }
 
-    public bool presenciaDeIngrediente(Ingrediente ingrediente)
+    public bool presenciaDeIngrediente(IngredienteCuantitativo ingrediente)
     {
-        foreach (KeyValuePair<Ingrediente, double> i in Ingredientes)
+        foreach (KeyValuePair<IngredienteCuantitativo, double> i in Ingredientes)
         {
             if (i.Key.Nombre.Equals(ingrediente.Nombre))
             {
@@ -39,9 +39,9 @@ public class Receta
         return false;
     }
 
-    public bool presenciaDeGrupoAlimenticio(string grupo)
+    public bool presenciaDeGrupoAlimenticio(Tipo grupo)
     {
-        foreach (KeyValuePair<Ingrediente, double> i in Ingredientes)
+        foreach (KeyValuePair<IngredienteCuantitativo, double> i in Ingredientes)
         {
             if (i.Key.Tipo.Equals(grupo))
             {
