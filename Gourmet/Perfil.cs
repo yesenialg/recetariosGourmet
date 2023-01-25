@@ -36,7 +36,7 @@ public class Perfil
 
     bool Carnivoro(Receta receta)
     {
-        if (receta.cantidadCalorias() > 200)
+        if (receta.CantidadCalorias() > 200)
             foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
             {
                 Console.WriteLine(ingrediente.Key.Tipo.Nombre);
