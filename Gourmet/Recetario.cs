@@ -12,7 +12,7 @@ public class Recetario
         this.Recetas = recetas;
     }
 
-    public int cantidadRecetas()
+    public int CantidadRecetas()
     {
         return Recetas.Count;
     }

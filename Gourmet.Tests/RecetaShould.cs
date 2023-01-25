@@ -7,11 +7,7 @@ public class RecetaShould
     [Fact]
     public void TestCantidadIngredientes()
     {
-        var lacteos = new Tipo("lacteos");
-        var carnes = new Tipo("carnes");
-        var legumbres = new Tipo("legumbres");
         var vegetales = new Tipo("vegetales");
-        var frutas = new Tipo("frutas");
         var cereales = new Tipo("cereales");
 
         var gramos = new Unidad("gramos");
@@ -30,7 +26,7 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        int cantidad = receta1.cantidadIngredientes();
+        int cantidad = receta1.CantidadIngredientes();
 
         Assert.Equal(3, cantidad);
     }
@@ -38,11 +34,7 @@ public class RecetaShould
     [Fact]
     public void TestCantidadCalorias()
     {
-        var lacteos = new Tipo("lacteos");
-        var carnes = new Tipo("carnes");
-        var legumbres = new Tipo("legumbres");
         var vegetales = new Tipo("vegetales");
-        var frutas = new Tipo("frutas");
         var cereales = new Tipo("cereales");
 
         var gramos = new Unidad("gramos");
@@ -61,7 +53,7 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        double cantidad = receta1.cantidadCalorias();
+        double cantidad = receta1.CantidadCalorias();
 
         Assert.Equal(285, cantidad);
     }
@@ -70,11 +62,7 @@ public class RecetaShould
     public void TestPresenciaDeIngredientes()
     {
 
-        var lacteos = new Tipo("lacteos");
-        var carnes = new Tipo("carnes");
-        var legumbres = new Tipo("legumbres");
         var vegetales = new Tipo("vegetales");
-        var frutas = new Tipo("frutas");
         var cereales = new Tipo("cereales");
 
         var gramos = new Unidad("gramos");
@@ -93,20 +81,16 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        bool cantidad = receta1.presenciaDeIngrediente(brocoli);
+        bool presencia = receta1.PresenciaDeIngrediente(brocoli);
 
-        Assert.Equal(true, cantidad);
+        Assert.True(presencia);
     }
 
     [Fact]
     public void TestPresenciaDeGrupoAlimenticio()
     {
 
-        var lacteos = new Tipo("lacteos");
-        var carnes = new Tipo("carnes");
-        var legumbres = new Tipo("legumbres");
         var vegetales = new Tipo("vegetales");
-        var frutas = new Tipo("frutas");
         var cereales = new Tipo("cereales");
 
         var gramos = new Unidad("gramos");
@@ -125,8 +109,8 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        bool cantidad = receta1.presenciaDeGrupoAlimenticio(vegetales);
+        bool presencia = receta1.PresenciaDeGrupoAlimenticio(vegetales);
 
-        Assert.Equal(true, cantidad);
+        Assert.True(presencia);
     }
 }

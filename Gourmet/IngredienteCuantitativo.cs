@@ -7,7 +7,7 @@ public class IngredienteCuantitativo : Ingrediente
     {
     }
 
-    public double calcularCalorias(double cantidadDeUnidades)
+    public double CalcularCalorias(double cantidadDeUnidades)
     {
         return Calorias * cantidadDeUnidades;
     }
