@@ -1,54 +1,49 @@
 using Xunit;
 using Gourmet;
-
-enum GrupoALimenticio
-{
-    lacteos,
-    carnes,
-    legumbres,
-    vegetales,
-    frutas,
-    cereales
-}
-
-enum Perfiles
-{
-    carnivoro,
-    celiaco,
-    vegano,
-    vegetariano
-}
-
 public class PerfilShould
 {
 
     [Fact]
     public void TestRecetaAptaCeliaco()
     {
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var pechuga = new Ingrediente("Pechuga", 115, "unidad", GrupoALimenticio.carnes + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var carnes = new Tipo("carnes");
+
+        var unidad = new Unidad("unidad");
+
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { brocoli, 1},
             { pechuga, 1},
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var celiaco = new Perfil(Perfiles.celiaco + "");
+        var celiaco = new Perfil("celiaco");
 
-        var apta = celiaco.recetaApta(receta1);
+        var apta = celiaco.RecetaApta(receta1);
         Assert.True(apta);
     }
 
     [Fact]
     public void TestRecetaNoAptaCeliaco()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -56,9 +51,9 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var celiaco = new Perfil(Perfiles.celiaco + "");
+        var celiaco = new Perfil("celiaco");
 
-        var Noapta = celiaco.recetaApta(receta1);
+        var Noapta = celiaco.RecetaApta(receta1);
 
         Assert.False(Noapta);
     }
@@ -66,12 +61,21 @@ public class PerfilShould
     [Fact]
     public void TestRecetaAptaCarnivoro()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var pechuga = new Ingrediente("Pechuga", 115, "unidad", GrupoALimenticio.carnes + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+        var carnes = new Tipo("carnes");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -80,20 +84,28 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var carnivoro = new Perfil(Perfiles.carnivoro + "");
+        var carnivoro = new Perfil("carnivoro");
 
-        var apta = carnivoro.recetaApta(receta1);
+        var apta = carnivoro.RecetaApta(receta1);
         Assert.True(apta);
     }
 
     [Fact]
     public void TestRecetaNoAptaCarnivoro()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -101,20 +113,28 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var carnivoro = new Perfil(Perfiles.carnivoro + "");
+        var carnivoro = new Perfil("carnivoro");
 
-        var Noapta = carnivoro.recetaApta(receta1);
+        var Noapta = carnivoro.RecetaApta(receta1);
         Assert.False(Noapta);
     }
 
     [Fact]
     public void TestRecetaAptaVegano()
     {
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -122,21 +142,30 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var vegano = new Perfil(Perfiles.vegano + "");
+        var vegano = new Perfil("vegano");
 
-        var apta = vegano.recetaApta(receta1);
+        var apta = vegano.RecetaApta(receta1);
         Assert.True(apta);
     }
 
     [Fact]
     public void TestRecetaNoAptaVegano()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var pechuga = new Ingrediente("Pechuga", 115, "unidad", GrupoALimenticio.carnes + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+        var carnes = new Tipo("carnes");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -145,9 +174,9 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var vegano = new Perfil(Perfiles.vegano + "");
+        var vegano = new Perfil("vegano");
 
-        var Noapta = vegano.recetaApta(receta1);
+        var Noapta = vegano.RecetaApta(receta1);
 
         Assert.False(Noapta);
     }
@@ -155,11 +184,19 @@ public class PerfilShould
     [Fact]
     public void TestRecetaAptaVegetariano()
     {
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -167,21 +204,30 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var vegetariano = new Perfil(Perfiles.vegetariano + "");
+        var vegetariano = new Perfil("vegetariano");
 
-        var apta = vegetariano.recetaApta(receta1);
+        var apta = vegetariano.RecetaApta(receta1);
         Assert.True(apta);
     }
 
     [Fact]
     public void TestRecetaNoAptaVegetariano()
     {
-        var mani = new Ingrediente("Mani", 5, "gramos", GrupoALimenticio.cereales + "");
-        var arroz = new Ingrediente("Arroz", 180, "libra", GrupoALimenticio.cereales + "");
-        var brocoli = new Ingrediente("Brocoli", 145, "unidad", GrupoALimenticio.vegetales + "");
-        var pechuga = new Ingrediente("Pechuga", 115, "unidad", GrupoALimenticio.carnes + "");
 
-        Dictionary<Ingrediente, double> ingredientes1 = new Dictionary<Ingrediente, double>
+        var vegetales = new Tipo("vegetales");
+        var cereales = new Tipo("cereales");
+        var carnes = new Tipo("carnes");
+
+        var gramos = new Unidad("gramos");
+        var libra = new Unidad("libra");
+        var unidad = new Unidad("unidad");
+
+        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
+
+        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
             { mani, 10},
             { arroz, 0.5},
@@ -190,9 +236,9 @@ public class PerfilShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        var vegetariano = new Perfil(Perfiles.vegetariano + "");
+        var vegetariano = new Perfil("vegetariano");
 
-        var Noapta = vegetariano.recetaApta(receta1);
+        var Noapta = vegetariano.RecetaApta(receta1);
 
         Assert.False(Noapta);
     }

@@ -10,23 +10,23 @@ public class Perfil
         this.Nombre = nombre;
     }
 
-    public bool recetaApta(Receta receta)
+    public bool RecetaApta(Receta receta)
     {
         if (this.Nombre == "carnivoro")
         {
-            return this.carnivoro(receta);
+            return this.Carnivoro(receta);
         }
         else if (this.Nombre == "celiaco")
         {
-            return this.celiaco(receta);
+            return this.Celiaco(receta);
         }
         else if (this.Nombre == "vegano")
         {
-            return this.vegano(receta);
+            return this.Vegano(receta);
         }
         else if (this.Nombre == "vegetariano")
         {
-            return this.vegetariano(receta);
+            return this.Vegetariano(receta);
         }
         else
         {
@@ -34,42 +34,43 @@ public class Perfil
         }
     }
 
-    bool carnivoro(Receta receta)
+    bool Carnivoro(Receta receta)
     {
         if (receta.cantidadCalorias() > 200)
-            foreach (KeyValuePair<Ingrediente, double> ingrediente in receta.Ingredientes)
+            foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
             {
-                if (ingrediente.Key.Tipo.Equals("carnes"))
+                Console.WriteLine(ingrediente.Key.Tipo.Nombre);
+                if (ingrediente.Key.Tipo.Nombre.Equals("carnes"))
                     return true;
             }
         return false;
     }
 
-    bool celiaco(Receta receta)
+    bool Celiaco(Receta receta)
     {
-        foreach (KeyValuePair<Ingrediente, double> ingrediente in receta.Ingredientes)
+        foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
-            if (ingrediente.Key.Tipo.Equals("cereales"))
+            if (ingrediente.Key.Tipo.Nombre.Equals("cereales"))
                 return false;
         }
         return true;
     }
 
-    bool vegano(Receta receta)
+    bool Vegano(Receta receta)
     {
-        foreach (KeyValuePair<Ingrediente, double> ingrediente in receta.Ingredientes)
+        foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
-            if (ingrediente.Key.Tipo.Equals("carnes") || ingrediente.Key.Tipo.Equals("lacteos"))
+            if (ingrediente.Key.Tipo.Nombre.Equals("carnes") || ingrediente.Key.Tipo.Nombre.Equals("lacteos"))
                 return false;
         }
         return true;
     }
 
-    bool vegetariano(Receta receta)
+    bool Vegetariano(Receta receta)
     {
-        foreach (KeyValuePair<Ingrediente, double> ingrediente in receta.Ingredientes)
+        foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
-            if (ingrediente.Key.Tipo.Equals("carnes"))
+            if (ingrediente.Key.Tipo.Nombre.Equals("carnes"))
                 return false;
         }
         return true;
