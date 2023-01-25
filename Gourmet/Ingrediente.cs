@@ -9,13 +9,13 @@ public class Ingrediente
 
     public Ingrediente(string nombre, int calorias, Unidad unidad, Tipo tipo)
     {
-        this.Nombre = nombre;
-        this.Calorias = calorias;
-        this.Unidad = unidad;
-        this.Tipo = tipo;
+        Nombre = nombre;
+        Calorias = calorias;
+        Unidad = unidad;
+        Tipo = tipo;
     }
 
-    public double calcularCalorias()
+    public double CalcularCalorias()
     {
         return Calorias;
     }

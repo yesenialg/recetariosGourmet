@@ -42,7 +42,7 @@ public class RecetarioShould
         };
         var receta2 = new Receta("Receta2", ingredientes2);
 
-        List<Receta> recetas = new List<Receta>() { receta1, receta2 };
+        List<Receta> recetas = new() { receta1, receta2 };
         var recetario = new Recetario("Recetario1", recetas);
 
         int cantidad = recetario.cantidadRecetas();
