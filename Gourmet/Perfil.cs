@@ -39,7 +39,6 @@ public class Perfil
         if (receta.CantidadCalorias() > 200)
             foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
             {
-                Console.WriteLine(ingrediente.Key.Tipo.Nombre);
                 if (ingrediente.Key.Tipo.Nombre.Equals("carnes"))
                     return true;
             }
