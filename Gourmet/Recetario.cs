@@ -62,10 +62,10 @@ public class Recetario
 
     public Dictionary<ISuscritora, bool> VerificarAptos(Receta receta)
     {
-        Perfil celiaco = new("celiaco");
-        Perfil carnivoro = new("carnivoro");
-        Perfil vegano = new("vegano");
-        Perfil vegetariano = new("vegetariano");
+        Celiaco celiaco = new("celiaco");
+        Carnivoro carnivoro = new("carnivoro");
+        Vegano vegano = new("vegano");
+        Vegano vegetariano = new("vegetariano");
 
         var apta = new List<string>();
 

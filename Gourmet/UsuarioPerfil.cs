@@ -7,10 +7,10 @@ namespace Gourmet;
 public class UsuarioPerfil : ISuscritora
 {
     public Usuario Usuario { get; set; }
-    public Perfil Perfil { get; set; }
+    public IPerfil Perfil { get; set; }
     public bool Notificaciones { get; set; }
 
-    public UsuarioPerfil(Usuario nombre, Perfil perfil, bool notificaciones)
+    public UsuarioPerfil(Usuario nombre, IPerfil perfil, bool notificaciones)
     {
         this.Usuario = nombre;
         this.Perfil = perfil;

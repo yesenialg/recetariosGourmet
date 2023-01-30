@@ -43,7 +43,7 @@ public class UsuarioShould
 
         Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
 
-        Perfil celiaco = new Perfil("celiaco");
+        Celiaco celiaco = new("celiaco");
 
         ISuscritora sus1 = new UsuarioPerfil(usuario1, celiaco, true);
 
@@ -91,7 +91,7 @@ public class UsuarioShould
 
         Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
 
-        Perfil celiaco = new Perfil("celiaco");
+        Celiaco celiaco = new("celiaco");
 
         ISuscritora sus1 = new UsuarioPerfil(usuario1, celiaco, false);
 
@@ -139,7 +139,7 @@ public class UsuarioShould
 
         Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
 
-        Perfil vegetariano = new Perfil("vegetariano");
+        Vegetariano vegetariano = new("vegetariano");
 
         ISuscritora sus1 = new UsuarioPerfil(usuario1, vegetariano, true);
 

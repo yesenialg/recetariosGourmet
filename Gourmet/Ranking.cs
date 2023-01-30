@@ -23,7 +23,7 @@ public class Ranking
         {
             Recetas[receta] = Recetas[receta] + puntos;
             Console.WriteLine(Recetas[receta]);
-        }catch(Exception e)
+        }catch (Exception)
         {
 
         }
