@@ -4,9 +4,9 @@ using Gourmet;
 Console.WriteLine("Hello, World!");
 
 
+var carnes = new Tipo("carnes");
 var vegetales = new Tipo("vegetales");
 var cereales = new Tipo("cereales");
-var carnes = new Tipo("cereales");
 
 var gramos = new Unidad("gramos");
 var libra = new Unidad("libra");
@@ -16,8 +16,7 @@ var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
 var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
 var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
 var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
-
-Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+Dictionary<IngredienteCuantitativo, double> ingredientes1 = new()
         {
             { mani, 10},
             { arroz, 0.5},
@@ -25,9 +24,6 @@ Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<Ingre
             { pechuga, 1},
         };
 var receta1 = new Receta("Receta1", ingredientes1);
-
-var carnivoro = new Perfil("carnivoro");
-
+IPerfil carnivoro = new Carnivoro();
 var apta = carnivoro.RecetaApta(receta1);
-
-Console.WriteLine("Apta {0}", apta);
+Console.WriteLine(apta);
