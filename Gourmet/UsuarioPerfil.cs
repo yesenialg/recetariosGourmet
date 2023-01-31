@@ -17,7 +17,7 @@ public class UsuarioPerfil : ISuscritora
         this.Notificaciones = notificaciones;
     }
 
-    bool ISuscritora.EnviarNotificacion(Receta receta)
+    public bool EnviarNotificacion(Receta receta)
     {
         try
         {
