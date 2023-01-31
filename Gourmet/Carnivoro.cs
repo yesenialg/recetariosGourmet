@@ -2,7 +2,7 @@
 using Gourmet;
 public class Carnivoro : IPerfil
 {
-    bool IPerfil.RecetaApta(Receta receta)
+    public bool RecetaApta(Receta receta)
     {
         if (receta.CantidadCalorias() > 200)
             foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)

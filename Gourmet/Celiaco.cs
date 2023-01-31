@@ -2,7 +2,7 @@
 using Gourmet;
 public class Celiaco : IPerfil
 {
-    bool IPerfil.RecetaApta(Receta receta)
+    public bool RecetaApta(Receta receta)
     {
         foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
