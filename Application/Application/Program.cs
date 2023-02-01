@@ -26,4 +26,3 @@ Dictionary<IngredienteCuantitativo, double> ingredientes1 = new()
 var receta1 = new Receta("Receta1", ingredientes1);
 IPerfil carnivoro = new Carnivoro();
 var apta = carnivoro.RecetaApta(receta1);
-Console.WriteLine(apta);

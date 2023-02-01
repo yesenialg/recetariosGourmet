@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gourmet", "Gourmet\Gourmet.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gourmet.Tests", "Gourmet.Tests\Gourmet.Tests.csproj", "{F5C14498-4397-4539-A2AD-8FBAFF34650B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application\Application.csproj", "{CC0FB3E4-3CC7-47F2-AB22-2E6D62CB2F34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application\Application.csproj", "{CC0FB3E4-3CC7-47F2-AB22-2E6D62CB2F34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{61155BE0-0C14-4554-8520-905230A5F2E4}"
 EndProject
