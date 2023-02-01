@@ -12,22 +12,22 @@ public class Receta
         this.Ingredientes = ingredientes;
     }
 
-    public double cantidadCalorias()
+    public double CantidadCalorias()
     {
         var cantidadCalorias = 0.0;
         foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in Ingredientes)
         {
-            cantidadCalorias += ingrediente.Key.calcularCalorias(ingrediente.Value);
+            cantidadCalorias += ingrediente.Key.CalcularCalorias(ingrediente.Value);
         }
         return cantidadCalorias;
     }
 
-    public int cantidadIngredientes()
+    public int CantidadIngredientes()
     {
         return Ingredientes.Count;
     }
 
-    public bool presenciaDeIngrediente(IngredienteCuantitativo ingrediente)
+    public bool PresenciaDeIngrediente(IngredienteCuantitativo ingrediente)
     {
         foreach (KeyValuePair<IngredienteCuantitativo, double> i in Ingredientes)
         {
@@ -39,7 +39,7 @@ public class Receta
         return false;
     }
 
-    public bool presenciaDeGrupoAlimenticio(Tipo grupo)
+    public bool PresenciaDeGrupoAlimenticio(Tipo grupo)
     {
         foreach (KeyValuePair<IngredienteCuantitativo, double> i in Ingredientes)
         {

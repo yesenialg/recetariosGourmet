@@ -8,17 +8,14 @@ public class RecetarioShould
     public void TestCantidadRecetas()
     {
 
-        var lacteos = new Tipo("lacteos");
         var carnes = new Tipo("carnes");
         var legumbres = new Tipo("legumbres");
         var vegetales = new Tipo("vegetales");
-        var frutas = new Tipo("frutas");
         var cereales = new Tipo("cereales");
 
         var gramos = new Unidad("gramos");
         var libra = new Unidad("libra");
         var unidad = new Unidad("unidad");
-        var cn = new Unidad("cantidad necesaria");
 
         var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
         var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
@@ -45,7 +42,7 @@ public class RecetarioShould
         List<Receta> recetas = new() { receta1, receta2 };
         var recetario = new Recetario("Recetario1", recetas);
 
-        int cantidad = recetario.cantidadRecetas();
+        int cantidad = recetario.CantidadRecetas();
 
         Assert.Equal(2, cantidad);
     }
