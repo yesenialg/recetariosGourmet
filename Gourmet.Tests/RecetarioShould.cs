@@ -9,7 +9,7 @@ public class RecetarioShould
     {
         var context = new DBRecetariosContext();
 
-        var recetario = new Recetarios()
+        var recetario = new Recetario()
         {
             Titulo = "Recetario1"
         };
@@ -19,7 +19,7 @@ public class RecetarioShould
         var recetarioRecetas = new RecetasRecetario()
         {
             IdRecetario = recetario.Id,
-            IdRecetaNavigation = new Recetas()
+            IdRecetaNavigation = new Receta()
             {
                 Titulo = "Receta1"
             }
@@ -35,7 +35,7 @@ public class RecetarioShould
     {
         var context = new DBRecetariosContext();
 
-        var recetario = new Recetarios()
+        var recetario = new Recetario()
         {
             Titulo = "Recetario2"
         };
@@ -52,7 +52,7 @@ public class RecetarioShould
     {
         var context = new DBRecetariosContext();
 
-        var recetario = new Recetarios()
+        var recetario = new Recetario()
         {
             Titulo = "Recetario3"
         };
@@ -72,11 +72,11 @@ public class RecetarioShould
 
         var recetarioRecetas = new RecetasRecetario()
         {
-            IdRecetarioNavigation = new Recetarios()
+            IdRecetarioNavigation = new Recetario()
             {
                 Titulo = "Recetario4"
             },
-            IdRecetaNavigation = new Recetas()
+            IdRecetaNavigation = new Receta()
             {
                 Titulo = "Receta"
             }
@@ -96,7 +96,7 @@ public class RecetarioShould
     {
         var context = new DBRecetariosContext();
 
-        var recetario = new Recetarios()
+        var recetario = new Recetario()
         {
             Titulo = "Recetario5"
         };
@@ -106,7 +106,7 @@ public class RecetarioShould
         var recetarioRecetas = new RecetasRecetario()
         {
             IdRecetario = recetario.Id,
-            IdRecetaNavigation = new Recetas()
+            IdRecetaNavigation = new Receta()
             {
                 Titulo = "Receta5"
             }
@@ -114,7 +114,7 @@ public class RecetarioShould
         var recetarioRecetas2 = new RecetasRecetario()
         {
             IdRecetario = recetario.Id,
-            IdRecetaNavigation = new Recetas()
+            IdRecetaNavigation = new Receta()
             {
                 Titulo = "Receta5"
             }

@@ -9,7 +9,7 @@ public class RecetaShould
     {
         var context = new DBRecetariosContext();
 
-        var receta = new Recetas()
+        var receta = new Receta()
         {
             Titulo = "Receta50"
         };
@@ -56,7 +56,7 @@ public class RecetaShould
     {
         var context = new DBRecetariosContext();
 
-        var receta = new Recetas()
+        var receta = new Receta()
         {
             Titulo = "Receta50"
         };
@@ -103,7 +103,7 @@ public class RecetaShould
     {
         var context = new DBRecetariosContext();
 
-        var receta = new Recetas()
+        var receta = new Receta()
         {
             Titulo = "Receta50"
         };
@@ -150,7 +150,7 @@ public class RecetaShould
     {
         var context = new DBRecetariosContext();
 
-        var receta = new Recetas()
+        var receta = new Receta()
         {
             Titulo = "Receta50"
         };

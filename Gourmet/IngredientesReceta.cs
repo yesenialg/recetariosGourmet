@@ -9,7 +9,7 @@ public partial class IngredientesReceta
     public long IdReceta { get; set; }
 
     public virtual IngredienteCuantitativo? IdIngredienteNavigation { get; set; }
-    public virtual Recetas? IdRecetaNavigation { get; set; }
+    public virtual Receta? IdRecetaNavigation { get; set; }
 
     public double CalcularCalorias()
     {
@@ -21,8 +21,8 @@ public partial class IngredientesReceta
         return IdIngredienteNavigation.Nombre.Equals(ingrediente.Nombre);
     }
 
-    public Tipo GrupoAlimentario()
+    public long GrupoAlimentario()
     {
-        return IdIngredienteNavigation.IdTipoNavigation;
+        return IdIngredienteNavigation.IdTipo;
     }
 }

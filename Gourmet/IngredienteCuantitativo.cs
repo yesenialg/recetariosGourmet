@@ -1,6 +1,6 @@
 namespace Gourmet;
 
-public class IngredienteCuantitativo : Ingredientes
+public class IngredienteCuantitativo : Ingrediente
 {
     public IngredienteCuantitativo()
     {

@@ -1,8 +1,8 @@
 ﻿namespace Gourmet;
 
-public partial class Ingredientes
+public partial class Ingrediente
 {
-    public Ingredientes()
+    public Ingrediente()
     {
         IngredientesReceta = new HashSet<IngredientesReceta>();
     }

@@ -2,9 +2,9 @@ namespace Gourmet;
 using Gourmet;
 using System.Collections.Generic;
 
-public partial class Recetas
+public partial class Receta
 {
-    public Recetas()
+    public Receta()
     {
         IngredientesReceta = new HashSet<IngredientesReceta>();
         RecetasRecetario = new HashSet<RecetasRecetario>();
@@ -47,7 +47,7 @@ public partial class Recetas
     {
         foreach (IngredientesReceta ingrediente in IngredientesReceta)
         {
-            if ((ingrediente.GrupoAlimentario() != null) && ingrediente.GrupoAlimentario().Equals(grupo))
+            if (ingrediente.GrupoAlimentario().Equals(grupo.Id))
             {
                 return true;
             };

@@ -14,12 +14,12 @@ public partial class DBRecetariosContext : DbContext
     {
     }
 
-    public virtual DbSet<Ingredientes> Ingredientes { get; set; } = null!;
+    public virtual DbSet<Ingrediente> Ingredientes { get; set; } = null!;
     public virtual DbSet<IngredienteCuantitativo> IngredienteCuantitativo { get; set; } = null!;
     public virtual DbSet<IngredientesReceta> IngredientesReceta { get; set; } = null!;
-    public virtual DbSet<Recetarios> Recetarios { get; set; } = null!;
+    public virtual DbSet<Recetario> Recetarios { get; set; } = null!;
     public virtual DbSet<RecetasRecetario> RecetasRecetarios { get; set; } = null!;
-    public virtual DbSet<Recetas> Recetas { get; set; } = null!;
+    public virtual DbSet<Receta> Recetas { get; set; } = null!;
     public virtual DbSet<Tipo> Tipos { get; set; } = null!;
     public virtual DbSet<Unidad> Unidads { get; set; } = null!;
 
@@ -33,7 +33,7 @@ public partial class DBRecetariosContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Ingredientes>(entity =>
+        modelBuilder.Entity<Ingrediente>(entity =>
         {
             entity.ToTable("Ingredientes");
 
@@ -58,7 +58,7 @@ public partial class DBRecetariosContext : DbContext
                 .HasForeignKey(d => d.IdReceta);
         });
 
-        modelBuilder.Entity<Recetarios>(entity =>
+        modelBuilder.Entity<Recetario>(entity =>
         {
             entity.ToTable("Recetarios");
         });
