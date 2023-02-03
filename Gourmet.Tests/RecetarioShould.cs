@@ -1,51 +1,129 @@
 using Xunit;
 using Gourmet;
+using System;
 
 public class RecetarioShould 
 {
+    [Fact]
+    async public void TestCrearRecetario()
+    {
+        var context = new DBRecetariosContext();
+
+        var recetario = new Recetarios()
+        {
+            Titulo = "Recetario1"
+        };
+        context.Recetarios.Add(recetario);
+        context.SaveChanges();
+
+        var recetarioRecetas = new RecetasRecetario()
+        {
+            IdRecetario = recetario.Id,
+            IdRecetaNavigation = new Recetas()
+            {
+                Titulo = "Receta1"
+            }
+        };
+        context.RecetasRecetarios.Add(recetarioRecetas);
+
+        Assert.Equal(2, await context.SaveChangesAsync());
+        
+    }
+
+    [Fact]
+    public void TestActualizarRecetario()
+    {
+        var context = new DBRecetariosContext();
+
+        var recetario = new Recetarios()
+        {
+            Titulo = "Recetario2"
+        };
+
+        context.Recetarios.Add(recetario);
+        context.SaveChanges();
+
+        var result = recetario.EditarRecetario(recetario.Id, "RECETARIO2");
+        Assert.Equal(1, result);
+    }
+
+    [Fact]
+    public void TestLeerRecetario()
+    {
+        var context = new DBRecetariosContext();
+
+        var recetario = new Recetarios()
+        {
+            Titulo = "Recetario3"
+        };
+
+        context.Recetarios.Add(recetario);
+        context.SaveChanges();
+
+        var LeerRecetario = context.Recetarios.Where(s => s.Titulo == "Recetario3").ToList()[0];
+
+        Assert.Equal("Recetario3", LeerRecetario.Titulo);
+    }
+
+    [Fact]
+    public void TestEliminarRecetario()
+    {
+        var context = new DBRecetariosContext();
+
+        var recetarioRecetas = new RecetasRecetario()
+        {
+            IdRecetarioNavigation = new Recetarios()
+            {
+                Titulo = "Recetario4"
+            },
+            IdRecetaNavigation = new Recetas()
+            {
+                Titulo = "Receta"
+            }
+        };
+
+        context.RecetasRecetarios.Add(recetarioRecetas);
+        context.SaveChanges();
+
+        var recetario = context.Recetarios.Where(s => s.Titulo == "Recetario4").ToList()[0];
+
+        context.Recetarios.Remove(recetario);
+        Assert.Equal(2, context.SaveChanges());
+    }
 
     [Fact]
     public void TestCantidadRecetas()
     {
+        var context = new DBRecetariosContext();
 
-        var lacteos = new Tipo("lacteos");
-        var carnes = new Tipo("carnes");
-        var legumbres = new Tipo("legumbres");
-        var vegetales = new Tipo("vegetales");
-        var frutas = new Tipo("frutas");
-        var cereales = new Tipo("cereales");
-
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-        var cn = new Unidad("cantidad necesaria");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
-        var cebolla = new IngredienteCuantitativo("Cebolla", 95, unidad, legumbres);
-
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var recetario = new Recetarios()
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
+            Titulo = "Recetario5"
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+        context.Recetarios.Add(recetario);
+        context.SaveChanges();
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var recetarioRecetas = new RecetasRecetario()
         {
-            { pechuga, 1},
-            { cebolla, 1},
-            { brocoli, 1},
+            IdRecetario = recetario.Id,
+            IdRecetaNavigation = new Recetas()
+            {
+                Titulo = "Receta5"
+            }
         };
-        var receta2 = new Receta("Receta2", ingredientes2);
+        var recetarioRecetas2 = new RecetasRecetario()
+        {
+            IdRecetario = recetario.Id,
+            IdRecetaNavigation = new Recetas()
+            {
+                Titulo = "Receta5"
+            }
+        };
+        context.RecetasRecetarios.Add(recetarioRecetas);
+        context.RecetasRecetarios.Add(recetarioRecetas2);
+        context.SaveChanges();
 
-        List<Receta> recetas = new() { receta1, receta2 };
-        var recetario = new Recetario("Recetario1", recetas);
-
-        int cantidad = recetario.cantidadRecetas();
+        int cantidad = recetario.CantidadRecetas();
 
         Assert.Equal(2, cantidad);
     }

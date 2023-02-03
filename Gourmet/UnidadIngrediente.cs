@@ -1,11 +1,14 @@
 namespace Gourmet;
 
-public class Unidad
+public partial class Unidad
 {
-    public string Nombre { get; set; }
-
-    public Unidad(string nombre)
+    public Unidad()
     {
-        this.Nombre = nombre;
+        Ingredientes = new HashSet<Ingredientes>();
     }
+
+    public string? Nombre { get; set; }
+    public long Id { get; set; }
+
+    public virtual ICollection<Ingredientes> Ingredientes { get; set; }
 }

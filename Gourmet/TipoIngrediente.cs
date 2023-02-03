@@ -1,11 +1,14 @@
 namespace Gourmet;
 
-public class Tipo
+public partial class Tipo
 {
-    public string Nombre { get; set; }
-
-    public Tipo(string nombre)
+    public Tipo()
     {
-        this.Nombre = nombre;
+        Ingredientes = new HashSet<Ingredientes>();
     }
+
+    public string? Nombre { get; set; }
+    public long Id { get; set; }
+
+    public virtual ICollection<Ingredientes> Ingredientes { get; set; }
 }
