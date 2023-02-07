@@ -1,5 +1,6 @@
 namespace Gourmet;
 using Gourmet;
+using System.Text.Json.Nodes;
 
 public partial class Recetario
 {
@@ -36,5 +37,23 @@ public partial class Recetario
         {
             i.EliminarRecetaRecetario();
         }
+    }
+    public List<RecetasUnRecetario> RecetasDeUnRecetario()
+    {
+        using var context = new DBRecetariosContext();
+
+        var query = (from receta in context.Recetas
+                    join recetariorecetas in context.RecetasRecetarios
+                    on receta.Id equals recetariorecetas.IdReceta
+                    join recetario in context.Recetarios
+                    on recetariorecetas.IdRecetario equals recetario.Id
+                    where recetariorecetas.IdRecetario == Id
+                    select new RecetasUnRecetario
+                    {
+                        IdRecetario = Id,
+                        Recetario = recetario.Titulo,
+                        Receta = receta.Titulo
+                    }).ToList();
+        return query;
     }
 }
