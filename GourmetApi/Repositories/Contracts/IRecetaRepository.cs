@@ -4,11 +4,11 @@ namespace GourmetApi.Repositories.Contracts
 {
     public interface IRecetaRepository
     {
-        IEnumerable<Recetario> GetRecetas();
-        Recetario GetRecetaByID(int recetarioId);
-        void InsertReceta(Recetario recetario);
-        void DeleteReceta(int recetarioID);
-        void UpdateReceta(Recetario recetario);
+        IEnumerable<Receta> GetRecetas();
+        Receta GetRecetaByID(int recetaId);
+        void InsertReceta(Receta receta);
+        void DeleteReceta(int recetaID);
+        void UpdateReceta(Receta receta);
         void Save();
     }
 }

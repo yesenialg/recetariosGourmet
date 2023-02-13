@@ -1,5 +1,6 @@
 ﻿using Gourmet;
 using GourmetApi.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace GourmetApi.Repositories
 {
@@ -12,34 +13,35 @@ namespace GourmetApi.Repositories
             this.context = context;
         }
 
-        public void DeleteReceta(int recetarioID)
+        public void DeleteReceta(int recetaID)
         {
-            throw new NotImplementedException();
+            Receta receta = context.Recetas.Find(recetaID);
+            context.Recetas.Remove(receta);
         }
 
-        public Recetario GetRecetaByID(int recetarioId)
+        public Receta GetRecetaByID(int recetaId)
         {
-            throw new NotImplementedException();
+            return context.Recetas.Find(recetaId);
         }
 
-        public IEnumerable<Recetario> GetRecetas()
+        public IEnumerable<Receta> GetRecetas()
         {
-            throw new NotImplementedException();
+            return context.Recetas.ToList();
         }
 
-        public void InsertReceta(Recetario recetario)
+        public void InsertReceta(Receta receta)
         {
-            throw new NotImplementedException();
+            context.Recetas.Add(receta);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
-        public void UpdateReceta(Recetario recetario)
+        public void UpdateReceta(Receta receta)
         {
-            throw new NotImplementedException();
+            context.Entry(receta).State = EntityState.Modified;
         }
     }
 }

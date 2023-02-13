@@ -15,8 +15,8 @@ namespace GourmetApi.Repositories
 
         public void DeleteRecetario(int recetarioID)
         {
-            Recetario student = context.Recetarios.Find(recetarioID);
-            context.Recetarios.Remove(student);
+            Recetario recetario = context.Recetarios.Find(recetarioID);
+            context.Recetarios.Remove(recetario);
         }
 
         public Recetario GetRecetarioByID(int id)
