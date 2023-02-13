@@ -1,3 +1,5 @@
+using Gourmet;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<DBRecetariosContext>();
 
 var app = builder.Build();
 
@@ -13,13 +16,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => {
+        c.RoutePrefix = string.Empty;
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "GourmetAPI v1");
+    });
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
+
+app.UseHttpsRedirection();
 
 app.MapControllers();
 
 app.Run();
+//Conflicting method/path combination "GET api/Recetarios" for actions - GourmetApi.Controllers.RecetarioController.GetAll (GourmetApi),GourmetApi.Controllers.RecetarioController.GetReecetasDeRecetario(GourmetApi).Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround

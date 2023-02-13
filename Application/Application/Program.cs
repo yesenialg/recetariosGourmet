@@ -6,11 +6,9 @@ var context = new DBRecetariosContext();
 long id = 190;
 var recetario = context.Recetarios.Find(id);
 
-var LeerRecetarios = recetario.RecetasDeUnRecetario();
 
 Console.WriteLine("RECETARIOS");
-Console.WriteLine(LeerRecetarios.Count);
-foreach (var i in LeerRecetarios)
-{
-    Console.WriteLine(i);
-}
+//foreach (var i in LeerRecetarios)
+//{
+//    Console.WriteLine(i);
+//}
