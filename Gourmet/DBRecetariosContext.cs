@@ -8,12 +8,10 @@ public partial class DBRecetariosContext : DbContext
     public DBRecetariosContext()
     {
     }
-
     public DBRecetariosContext(DbContextOptions<DBRecetariosContext> options)
         : base(options)
     {
     }
-
     public virtual DbSet<Ingrediente> Ingredientes { get; set; } = null!;
     public virtual DbSet<IngredienteCuantitativo> IngredienteCuantitativo { get; set; } = null!;
     public virtual DbSet<IngredientesReceta> IngredientesReceta { get; set; } = null!;

@@ -18,7 +18,7 @@ namespace Gourmet.Repositories
             context.Recetas.Remove(receta);
         }
 
-        public Receta GetRecetaByID(int recetaId)
+        public Receta GetRecetaByID(long recetaId)
         {
             return context.Recetas.Find(recetaId);
         }
