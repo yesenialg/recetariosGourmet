@@ -91,7 +91,7 @@ public class RankingShould
 
         Ranking ranking1 = new("Ranking1", true);
         ranking1.AgregarReceta(receta1);
-        ranking1.Desactivar();
+        ranking1.CambiarEstado(false);
 
 
         recetario.SuscribirRanking(ranking1);

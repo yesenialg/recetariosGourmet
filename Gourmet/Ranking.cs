@@ -29,12 +29,8 @@ public class Ranking
         }
     }
 
-    public void Desactivar()
+    public void CambiarEstado(bool estado)
     {
-        this.Activo = false;
-    }
-    public void Activar()
-    {
-        this.Activo = true;
+        this.Activo = estado;
     }
 }
