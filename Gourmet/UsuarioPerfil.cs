@@ -35,12 +35,8 @@ public class UsuarioPerfil : ISuscritora
         }
     }
 
-    public void ActivarNotificaciones()
+    public void CambiarEstadoNotificaciones()
     {
-        this.Notificaciones = true;
-    }
-    public void DesactivarNotificaciones()
-    {
-        this.Notificaciones = false;
+        this.Notificaciones = !this.Notificaciones;
     }
 }
