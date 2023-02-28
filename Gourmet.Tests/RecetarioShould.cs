@@ -7,21 +7,11 @@ public class RecetarioShould
     [Fact]
     public void TestCantidadRecetas()
     {
-
-        var carnes = new Tipo("carnes");
-        var legumbres = new Tipo("legumbres");
-        var vegetales = new Tipo("vegetales");
-        var cereales = new Tipo("cereales");
-
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
-        var cebolla = new IngredienteCuantitativo("Cebolla", 95, unidad, legumbres);
+        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
+        var cebolla = new IngredienteCuantitativo("Cebolla", 95, Unidad.unidad, Tipo.legumbres);
 
         Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {

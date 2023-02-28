@@ -6,13 +6,8 @@ public class CeliacoShould
     public void TestRecetaApta()
     {
 
-        var carnes = new Tipo("carnes");
-        var vegetales = new Tipo("vegetales");
-
-        var unidad = new Unidad("unidad");
-
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-        var pechuga = new IngredienteCuantitativo("Pechuga", 115, unidad, carnes);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
+        var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
         Dictionary<IngredienteCuantitativo, double> ingredientes1 = new()
         {
             { brocoli, 1},
@@ -27,16 +22,9 @@ public class CeliacoShould
     public void TestRecetaNoApta()
     {
 
-        var vegetales = new Tipo("vegetales");
-        var cereales = new Tipo("cereales");
-
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
+        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         Dictionary<IngredienteCuantitativo, double> ingredientes1 = new()
         {
             { mani, 10},

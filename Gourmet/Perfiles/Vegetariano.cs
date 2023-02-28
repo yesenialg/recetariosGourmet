@@ -11,7 +11,7 @@ public class Vegetariano : IPerfil
     {
         foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
-            if (ingrediente.Key.Tipo.Nombre.Equals("carnes"))
+            if (ingrediente.Key.Tipo.Equals(Tipo.carnes))
                 return false;
         }
         return true;

@@ -11,7 +11,7 @@ public class Celiaco : IPerfil
     {
         foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
-            if (ingrediente.Key.Tipo.Nombre.Equals("cereales"))
+            if (ingrediente.Key.Tipo.Equals(Tipo.cereales))
                 return false;
         }
         return true;

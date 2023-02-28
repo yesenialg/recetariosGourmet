@@ -1,5 +1,21 @@
 ﻿namespace Gourmet;
 
+public enum Tipo
+{
+    carnes, 
+    legumbres,
+    vegetales,
+    cereales,
+    lacteos
+};
+
+public enum Unidad
+{
+    gramos,
+    libra,
+    unidad
+}
+
 public class Ingrediente
 {
     public string Nombre { get; set; }

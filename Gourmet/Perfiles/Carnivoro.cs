@@ -12,7 +12,7 @@ public class Carnivoro : IPerfil
         if (receta.CantidadCalorias() > 200)
             foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
             {
-                if (ingrediente.Key.Tipo.Nombre.Equals("carnes"))
+                if (ingrediente.Key.Tipo.Equals(Tipo.carnes))
                     return true;
             }
         return false;

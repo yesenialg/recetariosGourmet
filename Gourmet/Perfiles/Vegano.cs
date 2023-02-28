@@ -11,7 +11,7 @@ public class Vegano : IPerfil
     {
         foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
         {
-            if (ingrediente.Key.Tipo.Nombre.Equals("carnes") || ingrediente.Key.Tipo.Nombre.Equals("lacteos"))
+            if (ingrediente.Key.Tipo.Equals(Tipo.carnes) || ingrediente.Key.Tipo.Equals(Tipo.lacteos))
                 return false;
         }
         return true;
