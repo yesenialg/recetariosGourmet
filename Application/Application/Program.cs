@@ -43,3 +43,5 @@ ranking1.AgregarReceta(receta1);
 
 recetario.SuscribirRanking(ranking1);
 recetario.AgregarReceta(receta1);
+
+Console.WriteLine(ranking1.Recetas[receta1]);
