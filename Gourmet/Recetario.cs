@@ -28,20 +28,12 @@ public class Recetario
 
     public bool DesuscribirUsuario(ISuscritora suscripcion)
     {
-        var eliminar = 0;
-        var encontrado = false;
-        for (int i = 0; i < UsuariosSuscritos.Count(); i++)
+        var eliminar = from sus in UsuariosSuscritos
+                       where sus.Equals(suscripcion)
+                       select sus;
+        if (eliminar.ToList().Count != 0)
         {
-            if (UsuariosSuscritos[i].Equals(suscripcion))
-            {
-                eliminar = i;
-                encontrado = true;
-                break;
-            }
-        }
-        if (encontrado)
-        {
-            UsuariosSuscritos.Remove(UsuariosSuscritos[eliminar]);
+            UsuariosSuscritos.Remove(eliminar.ToList()[0]);
             return true;
         }
         return false;
@@ -100,20 +92,12 @@ public class Recetario
 
     public bool DesuscribirRanking(Ranking suscripcion)
     {
-        var eliminar = 0;
-        var encontrado = false;
-        for (int i = 0; i < RankingSuscritos.Count(); i++)
+        var eliminar = from sus in RankingSuscritos
+                       where sus.Equals(suscripcion)
+                       select sus;
+        if (eliminar.ToList().Count != 0)
         {
-            if (RankingSuscritos[i].Equals(suscripcion))
-            {
-                eliminar = i;
-                encontrado = true;
-                break;
-            }
-        }
-        if (encontrado)
-        {
-            RankingSuscritos.Remove(RankingSuscritos[eliminar]);
+            RankingSuscritos.Remove(eliminar.ToList()[0]);
             return true;
         }
         return false;
