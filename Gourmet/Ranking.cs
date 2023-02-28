@@ -19,13 +19,12 @@ public class Ranking
     
     public void SumarPuntos(Receta receta, double puntos)
     {
-        try
+        var recetaEnRanking = from rec in Recetas
+                              where rec.Equals(receta)
+                       select rec;
+        if(recetaEnRanking.ToList().Count != 0 )
         {
             Recetas[receta] = Recetas[receta] + puntos;
-            Console.WriteLine(Recetas[receta]);
-        }catch (Exception)
-        {
-
         }
     }
 

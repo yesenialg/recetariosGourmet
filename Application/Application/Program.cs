@@ -38,9 +38,8 @@ List<Receta> recetas = new List<Receta>() { receta2 };
 var recetario = new Recetario("Recetario1", recetas);
 
 Ranking ranking1 = new("Ranking1", true);
-Ranking ranking2 = new("Ranking2", true);
 ranking1.AgregarReceta(receta1);
 
 
 recetario.SuscribirRanking(ranking1);
-Console.WriteLine(recetario.DesuscribirRanking(ranking1));
+recetario.AgregarReceta(receta1);
