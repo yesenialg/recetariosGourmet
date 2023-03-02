@@ -5,14 +5,14 @@ public class Recetario
 {
     public string Titulo { get; set; }
     public List<Receta> Recetas { get; set; }
-    public List<ISuscritora> UsuariosSuscritos { get; set; }
+    public List<UsuarioPerfil> UsuariosSuscritos { get; set; }
     public List<Ranking> RankingSuscritos { get; set; }
     
     public Recetario(string titulo, List<Receta> recetas)
     {
         this.Titulo = titulo;
         this.Recetas = recetas;
-        this.UsuariosSuscritos = new List<ISuscritora>();
+        this.UsuariosSuscritos = new List<UsuarioPerfil>();
         this.RankingSuscritos = new List<Ranking>();
     }
 
@@ -21,12 +21,12 @@ public class Recetario
         return Recetas.Count;
     }
     
-    public void SuscribirUsuario(ISuscritora suscripcion)
+    public void SuscribirUsuario(UsuarioPerfil suscripcion)
     {
         UsuariosSuscritos.Add(suscripcion);
     }
 
-    public bool DesuscribirUsuario(ISuscritora suscripcion)
+    public bool DesuscribirUsuario(UsuarioPerfil suscripcion)
     {
         var eliminar = from sus in UsuariosSuscritos
                        where sus.Equals(suscripcion)
@@ -39,7 +39,7 @@ public class Recetario
         return false;
     }
 
-    public Dictionary<ISuscritora, bool> AgregarReceta(Receta receta)
+    public Dictionary<UsuarioPerfil, bool> AgregarReceta(Receta receta)
     {
         Recetas.Add(receta);
         foreach (Ranking i in RankingSuscritos)
@@ -52,7 +52,7 @@ public class Recetario
         return VerificarAptos(receta);
     }
 
-    public Dictionary<ISuscritora, bool> VerificarAptos(Receta receta)
+    public Dictionary<UsuarioPerfil, bool> VerificarAptos(Receta receta)
     {
         Celiaco celiaco = new("celiaco");
         Carnivoro carnivoro = new("carnivoro");
@@ -72,10 +72,10 @@ public class Recetario
         return NotificarUsuariosSuscritos(apta, receta);
     }
 
-    public Dictionary<ISuscritora, bool> NotificarUsuariosSuscritos(List<string> apta, Receta receta)
+    public Dictionary<UsuarioPerfil, bool> NotificarUsuariosSuscritos(List<string> apta, Receta receta)
     {
-        var correoEnviado = new Dictionary<ISuscritora, bool>();
-        foreach (ISuscritora suscrito in UsuariosSuscritos)
+        var correoEnviado = new Dictionary<UsuarioPerfil, bool>();
+        foreach (UsuarioPerfil suscrito in UsuariosSuscritos)
         {
             if (apta.Contains(suscrito.Perfil.Nombre) && suscrito.Notificaciones)
             {

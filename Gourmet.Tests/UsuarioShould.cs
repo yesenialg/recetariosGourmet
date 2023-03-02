@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using Gourmet;
+using Moq;
 
 public class UsuarioShould
 {
@@ -37,7 +38,10 @@ public class UsuarioShould
 
         Celiaco celiaco = new("celiaco");
 
-        ISuscritora sus1 = new UsuarioPerfil(usuario1, celiaco, true);
+        Mock<INotificacion> notificar = new Mock<INotificacion>();
+        notificar.Setup(a => a.EnviarNotificacion(receta2)).Returns(true);
+        
+        UsuarioPerfil sus1 = new UsuarioPerfil(usuario1, celiaco, true, notificar.Object);
 
         recetario.SuscribirUsuario(sus1);
 
@@ -77,7 +81,10 @@ public class UsuarioShould
 
         Celiaco celiaco = new("celiaco");
 
-        ISuscritora sus1 = new UsuarioPerfil(usuario1, celiaco, false);
+        Mock<INotificacion> notificar = new Mock<INotificacion>();
+        notificar.Setup(a => a.EnviarNotificacion(receta2)).Returns(true);
+
+        UsuarioPerfil sus1 = new UsuarioPerfil(usuario1, celiaco, false, notificar.Object);
 
         recetario.SuscribirUsuario(sus1);
 
@@ -116,8 +123,11 @@ public class UsuarioShould
         Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
 
         Vegetariano vegetariano = new("vegetariano");
+        
+        Mock<INotificacion> notificar = new Mock<INotificacion>();
+        notificar.Setup(a => a.EnviarNotificacion(receta2)).Returns(true);
 
-        ISuscritora sus1 = new UsuarioPerfil(usuario1, vegetariano, true);
+        UsuarioPerfil sus1 = new UsuarioPerfil(usuario1, vegetariano, true, notificar.Object);
 
         recetario.SuscribirUsuario(sus1);
 
