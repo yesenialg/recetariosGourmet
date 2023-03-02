@@ -15,10 +15,11 @@ public class VegetarianoShould
             { brocoli, 1},
         };
         var receta1 = new Receta("Receta1", ingredientes1);
-        IPerfil vegetariano = new Vegetariano("vegetariano");
+        IPerfil vegetariano = new Vegetariano();
         var apta = vegetariano.RecetaApta(receta1);
         Assert.True(apta);
     }
+
     [Fact]
     public void TestRecetaNoApta()
     {
@@ -34,7 +35,7 @@ public class VegetarianoShould
             { pechuga, 1},
         };
         var receta1 = new Receta("Receta1", ingredientes1);
-        IPerfil vegetariano = new Vegetariano("vegetariano");
+        IPerfil vegetariano = new Vegetariano();
         var Noapta = vegetariano.RecetaApta(receta1);
         Assert.False(Noapta);
     }

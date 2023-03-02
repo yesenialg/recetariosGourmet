@@ -1,6 +1,6 @@
 ﻿namespace Gourmet;
-
+using Gourmet;
 public interface INotificacion
 {
-    public bool EnviarNotificacion(Receta receta);
+    void EnviarNotificacion(Receta receta);
 }

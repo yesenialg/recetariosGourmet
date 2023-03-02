@@ -19,9 +19,7 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        int cantidad = receta1.CantidadIngredientes();
-
-        Assert.Equal(3, cantidad);
+        Assert.Equal(3, receta1.CantidadIngredientes());
     }
 
     [Fact]
@@ -39,9 +37,7 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        double cantidad = receta1.CantidadCalorias();
-
-        Assert.Equal(285, cantidad);
+        Assert.Equal(285, receta1.CantidadCalorias());
     }
 
     [Fact]
@@ -59,9 +55,7 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        bool presencia = receta1.PresenciaDeIngrediente(brocoli);
-
-        Assert.True(presencia);
+        Assert.True(receta1.PresenciaDeIngrediente(brocoli));
     }
 
     [Fact]
@@ -79,8 +73,6 @@ public class RecetaShould
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        bool presencia = receta1.PresenciaDeGrupoAlimenticio(Tipo.vegetales);
-
-        Assert.True(presencia);
+        Assert.True(receta1.PresenciaDeGrupoAlimenticio(Tipo.vegetales));
     }
 }

@@ -12,6 +12,8 @@ public class Receta
         this.Ingredientes = ingredientes;
     }
 
+    public int CantidadIngredientes() => Ingredientes.Count;
+
     public double CantidadCalorias()
     {
         var cantidadCalorias = 0.0;
@@ -20,11 +22,6 @@ public class Receta
             cantidadCalorias += ingrediente.Key.CalcularCalorias(ingrediente.Value);
         }
         return cantidadCalorias;
-    }
-
-    public int CantidadIngredientes()
-    {
-        return Ingredientes.Count;
     }
 
     public bool PresenciaDeIngrediente(IngredienteCuantitativo ingrediente)

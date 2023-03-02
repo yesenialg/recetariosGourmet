@@ -32,8 +32,6 @@ public class RecetarioShould
         List<Receta> recetas = new() { receta1, receta2 };
         var recetario = new Recetario("Recetario1", recetas);
 
-        int cantidad = recetario.CantidadRecetas();
-
-        Assert.Equal(2, cantidad);
+        Assert.Equal(2, recetario.CantidadRecetas());
     }
 }

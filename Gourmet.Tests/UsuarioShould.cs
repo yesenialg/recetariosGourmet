@@ -8,92 +8,82 @@ public class UsuarioShould
     [Fact]
     public void TestNotificacionActivada()
     {
-        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        Usuario usuario = new Usuario("Ana", "ana@gmail.com");
+
+        Celiaco celiaco = new();
+
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
 
         Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
-            { mani, 10},
-            { arroz, 0.5},
             { brocoli, 1},
             { pechuga, 1},
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var notificar = new Mock<INotificacion>();
+
+        var usuarioPerfil1 = new Mock<UsuarioPerfil>(usuario, celiaco, true, notificar.Object);
+        usuarioPerfil1.SetupGet(u => u.Notificar).Returns(true);
+        notificar.Setup(u => u.EnviarNotificacion(receta1)).Verifiable();
+
+        var usuariosSuscritos = new List<UsuarioPerfil> { usuarioPerfil1.Object };
+
+        var recetario = new Recetario("Recetario de prueba", new List<Receta>())
         {
-            { pechuga, 1},
-            { brocoli, 1},
+            UsuariosSuscritos = usuariosSuscritos
         };
 
-        var receta2 = new Receta("Receta2", ingredientes2);
+        recetario.AgregarReceta(receta1);
 
-        List<Receta> recetas = new List<Receta>() { receta1 };
-
-        var recetario = new Recetario("Recetario1", recetas);
-
-        Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
-
-        Celiaco celiaco = new("celiaco");
-
-        Mock<INotificacion> notificar = new Mock<INotificacion>();
-        notificar.Setup(a => a.EnviarNotificacion(receta2)).Returns(true);
-        
-        UsuarioPerfil sus1 = new UsuarioPerfil(usuario1, celiaco, true, notificar.Object);
-
-        recetario.SuscribirUsuario(sus1);
-
-        Assert.True(recetario.AgregarReceta(receta2)[sus1]);
+        notificar.Verify(u => u.EnviarNotificacion(receta1), Times.Once);
     }
 
     [Fact]
     public void TestNotificacionDesactivada()
     {
-        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        Usuario usuario = new Usuario("Ana", "ana@gmail.com");
+
+        Celiaco celiaco = new();
+
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
 
         Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
-            { mani, 10},
-            { arroz, 0.5},
             { brocoli, 1},
             { pechuga, 1},
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var notificar = new Mock<INotificacion>();
+
+        var usuarioPerfil1 = new Mock<UsuarioPerfil>(usuario, celiaco, false, notificar.Object);
+
+        usuarioPerfil1.SetupGet(u => u.Notificar).Returns(false);
+        notificar.Setup(u => u.EnviarNotificacion(receta1)).Verifiable();
+
+        var usuariosSuscritos = new List<UsuarioPerfil> { usuarioPerfil1.Object };
+
+        var recetario = new Recetario("Recetario de prueba", new List<Receta>())
         {
-            { pechuga, 1},
-            { brocoli, 1},
+            UsuariosSuscritos = usuariosSuscritos
         };
 
-        var receta2 = new Receta("Receta2", ingredientes2);
+        recetario.AgregarReceta(receta1);
 
-        List<Receta> recetas = new List<Receta>() { receta1 };
+        notificar.Verify(u => u.EnviarNotificacion(receta1), Times.Never);
 
-        var recetario = new Recetario("Recetario1", recetas);
-
-        Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
-
-        Celiaco celiaco = new("celiaco");
-
-        Mock<INotificacion> notificar = new Mock<INotificacion>();
-        notificar.Setup(a => a.EnviarNotificacion(receta2)).Returns(true);
-
-        UsuarioPerfil sus1 = new UsuarioPerfil(usuario1, celiaco, false, notificar.Object);
-
-        recetario.SuscribirUsuario(sus1);
-
-        Assert.Empty(recetario.AgregarReceta(receta2));
     }
 
     [Fact]
     public void TestNoRecibeNotificacion()
     {
+        Usuario usuario = new Usuario("Ana", "ana@gmail.com");
+
+        Celiaco celiaco = new();
+
         var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
         var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
@@ -101,36 +91,28 @@ public class UsuarioShould
 
         Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
         {
-            { mani, 10},
-            { arroz, 0.5},
+            { mani, 2 },
+            { arroz, 2 },
             { brocoli, 1},
             { pechuga, 1},
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var notificar = new Mock<INotificacion>();
+
+        var usuarioPerfil1 = new Mock<UsuarioPerfil>(usuario, celiaco, true, notificar.Object);
+        usuarioPerfil1.SetupGet(u => u.Notificar).Returns(true);
+        notificar.Setup(u => u.EnviarNotificacion(receta1)).Verifiable();
+
+        var usuariosSuscritos = new List<UsuarioPerfil> { usuarioPerfil1.Object };
+
+        var recetario = new Recetario("Recetario de prueba", new List<Receta>())
         {
-            { pechuga, 1},
-            { brocoli, 1},
+            UsuariosSuscritos = usuariosSuscritos
         };
 
-        var receta2 = new Receta("Receta2", ingredientes2);
+        recetario.AgregarReceta(receta1);
 
-        List<Receta> recetas = new List<Receta>() { receta1 };
-
-        var recetario = new Recetario("Recetario1", recetas);
-
-        Usuario usuario1 = new Usuario("Ana", "ana@gmail.com");
-
-        Vegetariano vegetariano = new("vegetariano");
-        
-        Mock<INotificacion> notificar = new Mock<INotificacion>();
-        notificar.Setup(a => a.EnviarNotificacion(receta2)).Returns(true);
-
-        UsuarioPerfil sus1 = new UsuarioPerfil(usuario1, vegetariano, true, notificar.Object);
-
-        recetario.SuscribirUsuario(sus1);
-
-        Assert.Empty(recetario.AgregarReceta(receta2));
+        notificar.Verify(u => u.EnviarNotificacion(receta1), Times.Never);
     }
 }

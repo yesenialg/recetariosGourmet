@@ -77,7 +77,6 @@ public class RankingShould
         ranking1.AgregarReceta(receta1);
         ranking1.CambiarEstado(false);
 
-
         recetario.SuscribirRanking(ranking1);
         recetario.AgregarReceta(receta1);
 

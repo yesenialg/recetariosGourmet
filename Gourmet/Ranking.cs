@@ -12,10 +12,9 @@ public class Ranking
         this.Recetas = new Dictionary<Receta, double>();
     }
 
-    public void AgregarReceta(Receta receta)
-    {
-        Recetas.Add(receta, 0);
-    }
+    public void CambiarEstado(bool estado) => this.Activo = estado;
+
+    public void AgregarReceta(Receta receta) => Recetas.Add(receta, 0);
     
     public void SumarPuntos(Receta receta, double puntos)
     {
@@ -27,10 +26,5 @@ public class Ranking
             Console.WriteLine("La receta no existe en el Ranking");
             Console.WriteLine(ex.Message);
         }
-    }
-
-    public void CambiarEstado(bool estado)
-    {
-        this.Activo = estado;
     }
 }

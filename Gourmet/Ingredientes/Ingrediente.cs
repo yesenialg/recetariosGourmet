@@ -31,8 +31,5 @@ public class Ingrediente
         Tipo = tipo;
     }
 
-    public double CalcularCalorias()
-    {
-        return Calorias;
-    }
+    public double CalcularCalorias() => Calorias;
 }

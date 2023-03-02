@@ -1,5 +1,6 @@
 namespace Gourmet;
 using Gourmet;
+using System.Linq;
 
 public class Recetario
 {
@@ -7,6 +8,8 @@ public class Recetario
     public List<Receta> Recetas { get; set; }
     public List<UsuarioPerfil> UsuariosSuscritos { get; set; }
     public List<Ranking> RankingSuscritos { get; set; }
+
+    public List<IPerfil> Perfiles;
     
     public Recetario(string titulo, List<Receta> recetas)
     {
@@ -14,17 +17,20 @@ public class Recetario
         this.Recetas = recetas;
         this.UsuariosSuscritos = new List<UsuarioPerfil>();
         this.RankingSuscritos = new List<Ranking>();
+        Perfiles = new List<IPerfil>
+        {
+            new Celiaco(),
+            new Carnivoro(),
+            new Vegano(),
+            new Vegetariano()
+        };
     }
 
-    public int CantidadRecetas()
-    {
-        return Recetas.Count;
-    }
+    public int CantidadRecetas() => Recetas.Count;
     
-    public void SuscribirUsuario(UsuarioPerfil suscripcion)
-    {
-        UsuariosSuscritos.Add(suscripcion);
-    }
+    public void SuscribirUsuario(UsuarioPerfil suscripcion) => UsuariosSuscritos.Add(suscripcion);
+
+    public void SuscribirRanking(Ranking suscripcion) => RankingSuscritos.Add(suscripcion);
 
     public bool DesuscribirUsuario(UsuarioPerfil suscripcion)
     {
@@ -39,55 +45,33 @@ public class Recetario
         return false;
     }
 
-    public Dictionary<UsuarioPerfil, bool> AgregarReceta(Receta receta)
+    public Receta AgregarReceta(Receta receta)
     {
         Recetas.Add(receta);
-        foreach (Ranking i in RankingSuscritos)
+        foreach (Ranking ranking in RankingSuscritos)
         {
-            if (i.Activo)
+            if (ranking.Activo)
             {
-                i.SumarPuntos(receta, 10);
+                ranking.SumarPuntos(receta, 10);
             }
         }
-        return VerificarAptos(receta);
-    }
+        var perfilesAptos = new List<System.Type>();
 
-    public Dictionary<UsuarioPerfil, bool> VerificarAptos(Receta receta)
-    {
-        Celiaco celiaco = new("celiaco");
-        Carnivoro carnivoro = new("carnivoro");
-        Vegano vegano = new("vegano");
-        Vegano vegetariano = new("vegetariano");
+        foreach (var perfil in Perfiles)
+        {
+            if (perfil.RecetaApta(receta))
+                perfilesAptos.Add(perfil.GetType());
+        }
 
-        var apta = new List<string>();
-
-        if (celiaco.RecetaApta(receta))
-            apta.Add(celiaco.Nombre);
-        if (carnivoro.RecetaApta(receta))
-            apta.Add(carnivoro.Nombre);
-        if (vegano.RecetaApta(receta))
-            apta.Add(vegano.Nombre);
-        if (vegetariano.RecetaApta(receta))
-            apta.Add(vegetariano.Nombre);
-        return NotificarUsuariosSuscritos(apta, receta);
-    }
-
-    public Dictionary<UsuarioPerfil, bool> NotificarUsuariosSuscritos(List<string> apta, Receta receta)
-    {
-        var correoEnviado = new Dictionary<UsuarioPerfil, bool>();
         foreach (UsuarioPerfil suscrito in UsuariosSuscritos)
         {
-            if (apta.Contains(suscrito.Perfil.Nombre) && suscrito.Notificaciones)
+            if (perfilesAptos.Contains(suscrito.Perfil.GetType()) && suscrito.Notificar)
             {
-                correoEnviado.Add(suscrito, suscrito.EnviarNotificacion(receta));
+                suscrito.EnviarNotificacion(receta);
             }
         }
-        return correoEnviado;
-    }
-    
-    public void SuscribirRanking(Ranking suscripcion)
-    {
-        RankingSuscritos.Add(suscripcion);
+
+        return receta;
     }
 
     public bool DesuscribirRanking(Ranking suscripcion)
