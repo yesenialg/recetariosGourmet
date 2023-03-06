@@ -1,17 +1,14 @@
-﻿namespace Gourmet;
+﻿namespace Gourmet.Perfiles;
 using Gourmet;
+using Gourmet.Ingredientes;
+
 public class Vegano : IPerfil
 {
-    public string Nombre { get; set; }
-    public Vegano(string nombre)
-    {
-        this.Nombre = nombre;
-    }
     public bool RecetaApta(Receta receta)
     {
         foreach (IngredientesReceta ingrediente in receta.IngredientesReceta)
         {
-            if (ingrediente.GrupoAlimentario().Equals(1) || ingrediente.GrupoAlimentario().Equals(2))
+            if (ingrediente.GrupoAlimentario().Equals(Tipo.lacteos) || ingrediente.GrupoAlimentario().Equals(Tipo.carnes))
                 return false;
         }
         return true;

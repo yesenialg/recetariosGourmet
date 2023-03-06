@@ -1,6 +1,10 @@
 ﻿using Xunit;
 using Gourmet;
-public class CarnivoroShould
+using Gourmet.Perfiles;
+using Gourmet.Ingredientes;
+using Gourmet.ContextDB;
+
+public class VegetarianoShould
 {
     [Fact]
     public void TestRecetaApta()
@@ -18,10 +22,10 @@ public class CarnivoroShould
         {
             IdIngredienteNavigation = new IngredienteCuantitativo()
             {
-                Nombre = "Pechuga",
+                Nombre = "Cebolla",
                 Calorias = 300,
-                IdTipo = 1,
-                IdUnidad = 1,
+                Tipo = Tipo.legumbres,
+                Unidad = Unidad.libra,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -31,10 +35,10 @@ public class CarnivoroShould
         {
             IdIngredienteNavigation = new IngredienteCuantitativo()
             {
-                Nombre = "Leche",
+                Nombre = "Lechuga",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.vegetales,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -44,8 +48,8 @@ public class CarnivoroShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        IPerfil carnivoro = new Carnivoro("carnivoro");
-        var apta = carnivoro.RecetaApta(receta);
+        IPerfil vegetariano = new Vegetariano();
+        var apta = vegetariano.RecetaApta(receta);
         Assert.True(apta);
     }
     [Fact]
@@ -64,10 +68,10 @@ public class CarnivoroShould
         {
             IdIngredienteNavigation = new IngredienteCuantitativo()
             {
-                Nombre = "Pechuga",
-                Calorias = 30,
-                IdTipo = 1,
-                IdUnidad = 1,
+                Nombre = "Cebolla",
+                Calorias = 300,
+                Tipo = Tipo.legumbres,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -77,10 +81,10 @@ public class CarnivoroShould
         {
             IdIngredienteNavigation = new IngredienteCuantitativo()
             {
-                Nombre = "Leche",
-                Calorias = 20,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Nombre = "Pechuga",
+                Calorias = 200,
+                Tipo = Tipo.carnes,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -90,8 +94,8 @@ public class CarnivoroShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        IPerfil carnivoro = new Carnivoro("carnivoro");
-        var Noapta = carnivoro.RecetaApta(receta);
+        IPerfil vegetariano = new Vegetariano();
+        var Noapta = vegetariano.RecetaApta(receta);
         Assert.False(Noapta);
     }
 }

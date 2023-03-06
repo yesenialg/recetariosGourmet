@@ -1,4 +1,4 @@
-﻿using Gourmet;
+﻿using Gourmet.ContextDB;
 using Gourmet.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,40 +13,18 @@ namespace Gourmet.Repositories
             this.context = context;
         }
 
-        public void DeleteRecetario(long recetarioID)
-        {
-            Recetario recetario = context.Recetarios.Find(recetarioID);
-            context.Recetarios.Remove(recetario);
-        }
+        public void DeleteRecetario(long recetarioID) => context.Recetarios.Remove(context.Recetarios.Find(recetarioID));
 
-        public Recetario GetRecetarioByID(int id)
-        {
-            return context.Recetarios.Find(id);
-        }
+        public Recetario GetRecetarioByID(int id) => context.Recetarios.Find(id);
 
-        public Recetario GetRecetarioByTitle(string recetarioTitle)
-        {
-            return context.Recetarios.Where(s => s.Titulo == recetarioTitle).ToList()[0];
-        }
+        public Recetario GetRecetarioByTitle(string recetarioTitle) => context.Recetarios.Where(s => s.Titulo == recetarioTitle).ToList()[0];
 
-        public IEnumerable<Recetario> GetRecetarios()
-        {
-            return context.Recetarios.ToList();
-        }
+        public IEnumerable<Recetario> GetRecetarios() => context.Recetarios.ToList();
 
-        public void InsertRecetario(Recetario recetario)
-        {
-            context.Recetarios.Add(recetario);
-        }
+        public void InsertRecetario(Recetario recetario) => context.Recetarios.Add(recetario);
 
-        public int Save()
-        {
-            return context.SaveChanges();
-        }
+        public int Save() => context.SaveChanges();
 
-        public void UpdateRecetario(Recetario recetario)
-        {
-            context.Entry(recetario).State = EntityState.Modified;
-        }
+        public void UpdateRecetario(Recetario recetario) => context.Entry(recetario).State = EntityState.Modified;
     }
 }

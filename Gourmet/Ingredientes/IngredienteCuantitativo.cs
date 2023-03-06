@@ -1,4 +1,4 @@
-namespace Gourmet;
+namespace Gourmet.Ingredientes;
 
 public class IngredienteCuantitativo : Ingrediente
 {
@@ -7,8 +7,5 @@ public class IngredienteCuantitativo : Ingrediente
         IngredientesReceta = new HashSet<IngredientesReceta>();
     }
 
-    public double CalcularCalorias(double cantidadDeUnidades)
-    {
-        return Calorias * cantidadDeUnidades;
-    }
+    public double CalcularCalorias(double cantidadDeUnidades) => Calorias * cantidadDeUnidades;
 }

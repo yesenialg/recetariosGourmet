@@ -1,4 +1,5 @@
-﻿using Gourmet.Repositories.Contracts;
+﻿using Gourmet.ContextDB;
+using Gourmet.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,40 +18,18 @@ namespace Gourmet.Repositories
             this.context = context;
         }
 
-        public void DeleteIngredienteReceta(int ingredienteRecetaID)
-        {
-            IngredientesReceta ingReceta = context.IngredientesReceta.Find(ingredienteRecetaID);
-            context.IngredientesReceta.Remove(ingReceta);
-        }
+        public void DeleteIngredienteReceta(int ingredienteRecetaID) => context.IngredientesReceta.Remove(context.IngredientesReceta.Find(ingredienteRecetaID));
 
-        public IngredientesReceta GetIngredienteRecetaByID(int id)
-        {
-            return context.IngredientesReceta.Find(id);
-        }
+        public IngredientesReceta GetIngredienteRecetaByID(int id) => context.IngredientesReceta.Find(id);
 
-        public IEnumerable<IngredientesReceta> GetIngredientesDeReceta(long idReceta)
-        {
-            return context.IngredientesReceta.Where(s => s.IdReceta == idReceta);
-        }
+        public IEnumerable<IngredientesReceta> GetIngredientesDeReceta(long idReceta) => context.IngredientesReceta.Where(s => s.IdReceta == idReceta);
 
-        public IEnumerable<IngredientesReceta> GetIngredientesRecetas()
-        {
-            return context.IngredientesReceta.ToList();
-        }
+        public IEnumerable<IngredientesReceta> GetIngredientesRecetas() => context.IngredientesReceta.ToList();
 
-        public void InsertIngredienteReceta(IngredientesReceta ingredienteReceta)
-        {
-            context.IngredientesReceta.Add(ingredienteReceta);
-        }
+        public void InsertIngredienteReceta(IngredientesReceta ingredienteReceta) => context.IngredientesReceta.Add(ingredienteReceta);
 
-        public int Save()
-        {
-            return context.SaveChanges();
-        }
+        public int Save() => context.SaveChanges();
 
-        public void UpdateIngredienteReceta(IngredientesReceta ingredienteReceta)
-        {
-            context.Entry(ingredienteReceta).State = EntityState.Modified;
-        }
+        public void UpdateIngredienteReceta(IngredientesReceta ingredienteReceta) => context.Entry(ingredienteReceta).State = EntityState.Modified;
     }
 }

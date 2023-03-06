@@ -3,6 +3,7 @@ using Gourmet;
 using System;
 using Gourmet.Repositories;
 using Gourmet.Repositories.Contracts;
+using Gourmet.ContextDB;
 
 public class RecetarioShould 
 {

@@ -1,5 +1,9 @@
 ﻿using Xunit;
 using Gourmet;
+using Gourmet.Perfiles;
+using Gourmet.Ingredientes;
+using Gourmet.ContextDB;
+
 public class VeganoShould
 {
     [Fact]
@@ -20,8 +24,8 @@ public class VeganoShould
             {
                 Nombre = "Cebolla",
                 Calorias = 300,
-                IdTipo = 3,
-                IdUnidad = 1,
+                Tipo = Tipo.legumbres,
+                Unidad = Unidad.libra,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -33,8 +37,8 @@ public class VeganoShould
             {
                 Nombre = "Lechuga",
                 Calorias = 200,
-                IdTipo = 3,
-                IdUnidad = 2,
+                Tipo = Tipo.vegetales,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -44,7 +48,7 @@ public class VeganoShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        IPerfil vegano = new Vegano("vegano");
+        IPerfil vegano = new Vegano();
         var apta = vegano.RecetaApta(receta);
         Assert.True(apta);
     }
@@ -67,8 +71,8 @@ public class VeganoShould
             {
                 Nombre = "Pechuga",
                 Calorias = 300,
-                IdTipo = 1,
-                IdUnidad = 1,
+                Tipo = Tipo.carnes,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -80,8 +84,8 @@ public class VeganoShould
             {
                 Nombre = "Leche",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -91,7 +95,7 @@ public class VeganoShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        IPerfil vegano = new Vegano("vegano");
+        IPerfil vegano = new Vegano();
         var Noapta = vegano.RecetaApta(receta);
         Assert.False(Noapta);
     }

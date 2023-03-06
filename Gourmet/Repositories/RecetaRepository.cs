@@ -1,4 +1,5 @@
-﻿using Gourmet.Repositories.Contracts;
+﻿using Gourmet.ContextDB;
+using Gourmet.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gourmet.Repositories
@@ -12,35 +13,16 @@ namespace Gourmet.Repositories
             this.context = context;
         }
 
-        public void DeleteReceta(int recetaID)
-        {
-            Receta receta = context.Recetas.Find(recetaID);
-            context.Recetas.Remove(receta);
-        }
+        public void DeleteReceta(int recetaID) => context.Recetas.Remove(context.Recetas.Find(recetaID));
 
-        public Receta GetRecetaByID(long recetaId)
-        {
-            return context.Recetas.Find(recetaId);
-        }
+        public Receta GetRecetaByID(long recetaId) => context.Recetas.Find(recetaId);
 
-        public IEnumerable<Receta> GetRecetas()
-        {
-            return context.Recetas.ToList();
-        }
+        public IEnumerable<Receta> GetRecetas() => context.Recetas.ToList();
 
-        public void InsertReceta(Receta receta)
-        {
-            context.Recetas.Add(receta);
-        }
+        public void InsertReceta(Receta receta) => context.Recetas.Add(receta);
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+        public void Save() => context.SaveChanges();
 
-        public void UpdateReceta(Receta receta)
-        {
-            context.Entry(receta).State = EntityState.Modified;
-        }
+        public void UpdateReceta(Receta receta) => context.Entry(receta).State = EntityState.Modified;
     }
 }

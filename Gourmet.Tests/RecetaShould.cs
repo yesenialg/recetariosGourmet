@@ -1,5 +1,7 @@
 ﻿using Xunit;
 using Gourmet;
+using Gourmet.Ingredientes;
+using Gourmet.ContextDB;
 
 public class RecetaShould
 {
@@ -22,8 +24,8 @@ public class RecetaShould
             {
                 Nombre = "Avena",
                 Calorias = 300,
-                IdTipo = 6,
-                IdUnidad = 2,
+                Tipo = Tipo.cereales,
+                Unidad = Unidad.libra,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -35,11 +37,11 @@ public class RecetaShould
             {
                 Nombre = "Leche",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
-            CantidadIngrediente = 2
+            CantidadIngrediente = 1
         };
 
         context.IngredientesReceta.Add(ingredienteReceta);
@@ -69,8 +71,8 @@ public class RecetaShould
             {
                 Nombre = "Avena",
                 Calorias = 300,
-                IdTipo = 6,
-                IdUnidad = 2,
+                Tipo = Tipo.cereales,
+                Unidad = Unidad.libra,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -82,8 +84,8 @@ public class RecetaShould
             {
                 Nombre = "Leche",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -116,8 +118,8 @@ public class RecetaShould
             {
                 Nombre = "Avena",
                 Calorias = 300,
-                IdTipo = 6,
-                IdUnidad = 2,
+                Tipo = Tipo.cereales,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -129,8 +131,8 @@ public class RecetaShould
             {
                 Nombre = "Leche",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -163,8 +165,8 @@ public class RecetaShould
             {
                 Nombre = "Avena",
                 Calorias = 300,
-                IdTipo = 6,
-                IdUnidad = 2,
+                Tipo = Tipo.cereales,
+                Unidad = Unidad.libra,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -176,8 +178,8 @@ public class RecetaShould
             {
                 Nombre = "Leche",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -187,9 +189,7 @@ public class RecetaShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        var Grupo = context.Tipos.Where(s => s.Nombre == "lacteos").ToList()[0];
-
-        bool presencia = receta.PresenciaDeGrupoAlimenticio(Grupo);
+        bool presencia = receta.PresenciaDeGrupoAlimenticio(Tipo.lacteos);
 
         Assert.Equal(true, presencia);
     }

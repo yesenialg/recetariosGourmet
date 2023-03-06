@@ -12,10 +12,6 @@ public partial class Recetario
     public string? Titulo { get; set; }
 
     public virtual ICollection<RecetasRecetario> RecetasRecetarios { get; set; }
-    
 
-    public int CantidadRecetas()
-    {
-        return RecetasRecetarios.Count;
-    }
+    public int CantidadRecetas() => RecetasRecetarios.Count;
 }

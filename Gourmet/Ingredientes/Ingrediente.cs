@@ -1,4 +1,20 @@
-﻿namespace Gourmet;
+﻿namespace Gourmet.Ingredientes;
+public enum Tipo
+{
+    carnes,
+    legumbres,
+    vegetales,
+    cereales,
+    lacteos
+};
+
+public enum Unidad
+{
+    gramos,
+    libra,
+    unidad
+}
+
 
 public partial class Ingrediente
 {
@@ -10,16 +26,11 @@ public partial class Ingrediente
     public string? Nombre { get; set; }
     public long Id { get; set; }
     public long Calorias { get; set; }
-    public long IdTipo { get; set; }
-    public long IdUnidad { get; set; }
+    public Tipo Tipo { get; set; }
+    public Unidad Unidad { get; set; }
 
-    public virtual Tipo? IdTipoNavigation { get; set; }
-    public virtual Unidad? IdUnidadNavigation { get; set; }
 
     public virtual ICollection<IngredientesReceta> IngredientesReceta { get; set; }
 
-    public long CalcularCalorias()
-    {
-        return Calorias;
-    }
+    public long CalcularCalorias() => Calorias;
 }
