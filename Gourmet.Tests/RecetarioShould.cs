@@ -13,21 +13,23 @@ public class RecetarioShould
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
         var cebolla = new IngredienteCuantitativo("Cebolla", 95, Unidad.unidad, Tipo.legumbres);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        
+        var ingredientes1 = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
+            new IngredienteCantidad(mani, 10),
+            new IngredienteCantidad(arroz, 0.5),
+            new IngredienteCantidad(brocoli, 1),
         };
+
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes2 = new List<IngredienteCantidad>
         {
-            { pechuga, 1},
-            { cebolla, 1},
-            { brocoli, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(cebolla, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
-        var receta2 = new Receta("Receta2", ingredientes2);
+        var receta2 = new Receta("Receta1", ingredientes2);
 
         List<Receta> recetas = new() { receta1, receta2 };
         var recetario = new Recetario("Recetario1", recetas);

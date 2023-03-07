@@ -5,11 +5,7 @@ public class Carnivoro : IPerfil
     public bool RecetaApta(Receta receta)
     {
         if (receta.CantidadCalorias() > 200)
-            foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
-            {
-                if (ingrediente.Key.Tipo.Equals(Tipo.carnes))
-                    return true;
-            }
+            return receta.IngredientesCantidad.Any(i => i.Ingrediente.Tipo.Equals(Tipo.carnes));
         return false;
     }
 }

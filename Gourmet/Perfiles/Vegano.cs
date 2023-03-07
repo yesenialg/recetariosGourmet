@@ -2,13 +2,5 @@
 using Gourmet;
 public class Vegano : IPerfil
 {
-    public bool RecetaApta(Receta receta)
-    {
-        foreach (KeyValuePair<IngredienteCuantitativo, double> ingrediente in receta.Ingredientes)
-        {
-            if (ingrediente.Key.Tipo.Equals(Tipo.carnes) || ingrediente.Key.Tipo.Equals(Tipo.lacteos))
-                return false;
-        }
-        return true;
-    }
+    public bool RecetaApta(Receta receta) => !receta.IngredientesCantidad.Any(i => i.Ingrediente.Tipo.Equals(Tipo.carnes) || i.Ingrediente.Tipo.Equals(Tipo.lacteos));
 }

@@ -12,19 +12,19 @@ public class RankingShould
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes1 = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
-            { pechuga, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(mani, 2),
+            new IngredienteCantidad(arroz, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes2 = new List<IngredienteCantidad>
         {
-            { pechuga, 1},
-            { brocoli, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
 
         var receta2 = new Receta("Receta2", ingredientes2);
@@ -52,19 +52,19 @@ public class RankingShould
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes1 = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
-            { pechuga, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(mani, 2),
+            new IngredienteCantidad(arroz, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes2 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes2 = new List<IngredienteCantidad>
         {
-            { pechuga, 1},
-            { brocoli, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
 
         var receta2 = new Receta("Receta2", ingredientes2);

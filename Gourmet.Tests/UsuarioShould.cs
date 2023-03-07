@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using Gourmet;
 using Moq;
+using System;
 
 public class UsuarioShould
 {
@@ -15,10 +16,10 @@ public class UsuarioShould
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes1 = new List<IngredienteCantidad>
         {
-            { brocoli, 1},
-            { pechuga, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
@@ -50,10 +51,10 @@ public class UsuarioShould
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
 
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes1 = new List<IngredienteCantidad>
         {
-            { brocoli, 1},
-            { pechuga, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
@@ -88,13 +89,13 @@ public class UsuarioShould
         var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
         var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
         var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
-
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        
+        var ingredientes1 = new List<IngredienteCantidad>
         {
-            { mani, 2 },
-            { arroz, 2 },
-            { brocoli, 1},
-            { pechuga, 1},
+            new IngredienteCantidad(pechuga, 1),
+            new IngredienteCantidad(mani, 2),
+            new IngredienteCantidad(arroz, 1),
+            new IngredienteCantidad(brocoli, 1),
         };
         var receta1 = new Receta("Receta1", ingredientes1);
 
