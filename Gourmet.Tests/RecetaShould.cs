@@ -7,110 +7,72 @@ public class RecetaShould
     [Fact]
     public void TestCantidadIngredientes()
     {
-        var vegetales = new Tipo("vegetales");
-        var cereales = new Tipo("cereales");
+        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
 
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
+            new IngredienteCantidad(mani, 10),
+            new IngredienteCantidad(arroz, 0.5),
+            new IngredienteCantidad(brocoli, 1),
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+        var receta1 = new Receta("Receta1", ingredientes);
 
-        int cantidad = receta1.CantidadIngredientes();
-
-        Assert.Equal(3, cantidad);
+        Assert.Equal(3, receta1.CantidadIngredientes());
     }
 
     [Fact]
     public void TestCantidadCalorias()
     {
-        var vegetales = new Tipo("vegetales");
-        var cereales = new Tipo("cereales");
+        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
 
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
+            new IngredienteCantidad(mani, 10),
+            new IngredienteCantidad(arroz, 0.5),
+            new IngredienteCantidad(brocoli, 1),
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+        var receta1 = new Receta("Receta1", ingredientes);
 
-        double cantidad = receta1.CantidadCalorias();
-
-        Assert.Equal(285, cantidad);
+        Assert.Equal(285, receta1.CantidadCalorias());
     }
 
     [Fact]
     public void TestPresenciaDeIngredientes()
     {
+        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
 
-        var vegetales = new Tipo("vegetales");
-        var cereales = new Tipo("cereales");
-
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
+            new IngredienteCantidad(mani, 10),
+            new IngredienteCantidad(arroz, 0.5),
+            new IngredienteCantidad(brocoli, 1),
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+        var receta1 = new Receta("Receta1", ingredientes);
 
-        bool presencia = receta1.PresenciaDeIngrediente(brocoli);
-
-        Assert.True(presencia);
+        Assert.True(receta1.PresenciaDeIngrediente(brocoli));
     }
 
     [Fact]
     public void TestPresenciaDeGrupoAlimenticio()
     {
+        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
+        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
+        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
 
-        var vegetales = new Tipo("vegetales");
-        var cereales = new Tipo("cereales");
-
-        var gramos = new Unidad("gramos");
-        var libra = new Unidad("libra");
-        var unidad = new Unidad("unidad");
-
-        var mani = new IngredienteCuantitativo("Mani", 5, gramos, cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, libra, cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, unidad, vegetales);
-
-        Dictionary<IngredienteCuantitativo, double> ingredientes1 = new Dictionary<IngredienteCuantitativo, double>
+        var ingredientes = new List<IngredienteCantidad>
         {
-            { mani, 10},
-            { arroz, 0.5},
-            { brocoli, 1},
+            new IngredienteCantidad(mani, 10),
+            new IngredienteCantidad(arroz, 0.5),
+            new IngredienteCantidad(brocoli, 1),
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+        var receta1 = new Receta("Receta1", ingredientes);
 
-        bool presencia = receta1.PresenciaDeGrupoAlimenticio(vegetales);
-
-        Assert.True(presencia);
+        Assert.True(receta1.PresenciaDeGrupoAlimenticio(Tipo.vegetales));
     }
 }
