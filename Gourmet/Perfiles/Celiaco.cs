@@ -4,13 +4,5 @@ using Gourmet.Ingredientes;
 
 public class Celiaco : IPerfil
 {
-    public bool RecetaApta(Receta receta)
-    {
-        foreach (IngredientesReceta ingrediente in receta.IngredientesReceta)
-        {
-            if (ingrediente.GrupoAlimentario().Equals(Tipo.cereales))
-                return false;
-        }
-        return true;
-    }
+    public bool RecetaApta(Receta receta) => !receta.IngredientesReceta.Any(i => i.GrupoAlimentario().Equals(Tipo.cereales));
 }

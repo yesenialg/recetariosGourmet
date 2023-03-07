@@ -1,20 +1,4 @@
 ﻿namespace Gourmet.Ingredientes;
-public enum Tipo
-{
-    carnes,
-    legumbres,
-    vegetales,
-    cereales,
-    lacteos
-};
-
-public enum Unidad
-{
-    gramos,
-    libra,
-    unidad
-}
-
 
 public partial class Ingrediente
 {

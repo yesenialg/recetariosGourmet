@@ -7,11 +7,7 @@ public class Carnivoro : IPerfil
     public bool RecetaApta(Receta receta)
     {
         if (receta.CantidadCalorias() > 200)
-            foreach (IngredientesReceta ingrediente in receta.IngredientesReceta)
-            {
-                if (ingrediente.GrupoAlimentario().Equals(Tipo.carnes))
-                    return true;
-            }
+            return receta.IngredientesReceta.Any(i => i.GrupoAlimentario().Equals(Tipo.carnes));
         return false;
     }
 }

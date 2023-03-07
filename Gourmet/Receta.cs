@@ -19,6 +19,7 @@ public partial class Receta
     public int CantidadIngredientes() => IngredientesReceta.Count;
 
     public double CantidadCalorias() => IngredientesReceta.Sum(ingrediente => ingrediente.CalcularCalorias());
+
     public bool PresenciaDeIngrediente(IngredienteCuantitativo ingrediente) => IngredientesReceta.Any(i => i.CompararIngrediente(ingrediente));
 
     public bool PresenciaDeGrupoAlimenticio(Tipo grupo) => IngredientesReceta.Any(ingrediente => ingrediente.GrupoAlimentario().Equals(grupo));

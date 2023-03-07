@@ -4,13 +4,4 @@ using Gourmet.Ingredientes;
 
 public class Vegano : IPerfil
 {
-    public bool RecetaApta(Receta receta)
-    {
-        foreach (IngredientesReceta ingrediente in receta.IngredientesReceta)
-        {
-            if (ingrediente.GrupoAlimentario().Equals(Tipo.lacteos) || ingrediente.GrupoAlimentario().Equals(Tipo.carnes))
-                return false;
-        }
-        return true;
-    }
-}
+    public bool RecetaApta(Receta receta) => !receta.IngredientesReceta.Any(i => i.GrupoAlimentario().Equals(Tipo.carnes) || i.GrupoAlimentario().Equals(Tipo.lacteos));}
