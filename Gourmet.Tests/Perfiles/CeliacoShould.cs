@@ -1,5 +1,9 @@
 ﻿using Xunit;
 using Gourmet;
+using Gourmet.Perfiles;
+using Gourmet.Ingredientes;
+using Gourmet.ContextDB;
+
 public class CeliacoShould
 {
     [Fact]
@@ -20,8 +24,8 @@ public class CeliacoShould
             {
                 Nombre = "Pechuga",
                 Calorias = 300,
-                IdTipo = 1,
-                IdUnidad = 1,
+                Tipo = Tipo.carnes,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -33,8 +37,8 @@ public class CeliacoShould
             {
                 Nombre = "Leche",
                 Calorias = 200,
-                IdTipo = 2,
-                IdUnidad = 2,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -44,7 +48,7 @@ public class CeliacoShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        IPerfil celiaco = new Celiaco("celiaco");
+        IPerfil celiaco = new Celiaco();
         var apta = celiaco.RecetaApta(receta);
         Assert.True(apta);
     }
@@ -66,8 +70,8 @@ public class CeliacoShould
             {
                 Nombre = "Pechuga",
                 Calorias = 300,
-                IdTipo = 1,
-                IdUnidad = 1,
+                Tipo = Tipo.carnes,
+                Unidad = Unidad.unidad,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 1
@@ -79,8 +83,8 @@ public class CeliacoShould
             {
                 Nombre = "Avena",
                 Calorias = 200,
-                IdTipo = 6,
-                IdUnidad = 2,
+                Tipo = Tipo.cereales,
+                Unidad = Unidad.libra,
             },
             IdReceta = receta.Id,
             CantidadIngrediente = 2
@@ -90,7 +94,7 @@ public class CeliacoShould
         context.IngredientesReceta.Add(ingredienteReceta2);
         context.SaveChanges();
 
-        IPerfil celiaco = new Celiaco("celiaco");
+        IPerfil celiaco = new Celiaco();
         var Noapta = celiaco.RecetaApta(receta);
         Assert.False(Noapta);
     }

@@ -1,5 +1,6 @@
-﻿namespace Gourmet;
+﻿namespace Gourmet.ContextDB;
 using Gourmet;
+using Gourmet.Ingredientes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -8,20 +9,16 @@ public partial class DBRecetariosContext : DbContext
     public DBRecetariosContext()
     {
     }
-
     public DBRecetariosContext(DbContextOptions<DBRecetariosContext> options)
         : base(options)
     {
     }
-
     public virtual DbSet<Ingrediente> Ingredientes { get; set; } = null!;
     public virtual DbSet<IngredienteCuantitativo> IngredienteCuantitativo { get; set; } = null!;
     public virtual DbSet<IngredientesReceta> IngredientesReceta { get; set; } = null!;
     public virtual DbSet<Recetario> Recetarios { get; set; } = null!;
     public virtual DbSet<RecetasRecetario> RecetasRecetarios { get; set; } = null!;
     public virtual DbSet<Receta> Recetas { get; set; } = null!;
-    public virtual DbSet<Tipo> Tipos { get; set; } = null!;
-    public virtual DbSet<Unidad> Unidads { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -36,14 +33,6 @@ public partial class DBRecetariosContext : DbContext
         modelBuilder.Entity<Ingrediente>(entity =>
         {
             entity.ToTable("Ingredientes");
-
-            entity.HasOne(d => d.IdTipoNavigation)
-                .WithMany(p => p.Ingredientes)
-                .HasForeignKey(d => d.IdTipo);
-
-            entity.HasOne(d => d.IdUnidadNavigation)
-                .WithMany(p => p.Ingredientes)
-                .HasForeignKey(d => d.IdUnidad);
         });
 
 
@@ -74,16 +63,6 @@ public partial class DBRecetariosContext : DbContext
             entity.HasOne(d => d.IdRecetarioNavigation)
                 .WithMany(p => p.RecetasRecetarios)
                 .HasForeignKey(d => d.IdRecetario);
-        });
-
-        modelBuilder.Entity<Tipo>(entity =>
-        {
-            entity.ToTable("Tipos");
-        });
-
-        modelBuilder.Entity<Unidad>(entity =>
-        {
-            entity.ToTable("Unidades");
         });
 
         OnModelCreatingPartial(modelBuilder);

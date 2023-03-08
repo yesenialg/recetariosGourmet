@@ -1,5 +1,5 @@
 namespace Gourmet;
-using Gourmet;
+using Gourmet.Ingredientes;
 using System.Collections.Generic;
 
 public partial class Receta
@@ -16,42 +16,11 @@ public partial class Receta
     public virtual ICollection<IngredientesReceta> IngredientesReceta { get; set; }
     public virtual ICollection<RecetasRecetario> RecetasRecetario { get; set; }
 
-    public double CantidadCalorias()
-    {
-        var cantidadCalorias = 0.0;
-        foreach (IngredientesReceta ingrediente in IngredientesReceta)
-        {
-            cantidadCalorias += ingrediente.CalcularCalorias();
-        }
-        return cantidadCalorias;
-    }
+    public int CantidadIngredientes() => IngredientesReceta.Count;
 
-    public int CantidadIngredientes()
-    {
-        return IngredientesReceta.Count;
-    }
+    public double CantidadCalorias() => IngredientesReceta.Sum(ingrediente => ingrediente.CalcularCalorias());
 
-    public bool PresenciaDeIngrediente(IngredienteCuantitativo ingrediente)
-    {
-        foreach (IngredientesReceta i in IngredientesReceta)
-        {
-            if (i.CompararIngrediente(ingrediente))
-            {
-                return true;
-            };
-        }
-        return false;
-    }
+    public bool PresenciaDeIngrediente(IngredienteCuantitativo ingrediente) => IngredientesReceta.Any(i => i.CompararIngrediente(ingrediente));
 
-    public bool PresenciaDeGrupoAlimenticio(Tipo grupo)
-    {
-        foreach (IngredientesReceta ingrediente in IngredientesReceta)
-        {
-            if (ingrediente.GrupoAlimentario().Equals(grupo.Id))
-            {
-                return true;
-            };
-        }
-        return false;
-    }
+    public bool PresenciaDeGrupoAlimenticio(Tipo grupo) => IngredientesReceta.Any(ingrediente => ingrediente.GrupoAlimentario().Equals(grupo));
 }

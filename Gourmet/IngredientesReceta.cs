@@ -1,5 +1,5 @@
 ﻿namespace Gourmet;
-using Gourmet;
+using Gourmet.Ingredientes;
 
 public partial class IngredientesReceta
 {
@@ -11,18 +11,9 @@ public partial class IngredientesReceta
     public virtual IngredienteCuantitativo? IdIngredienteNavigation { get; set; }
     public virtual Receta? IdRecetaNavigation { get; set; }
 
-    public double CalcularCalorias()
-    {
-        return IdIngredienteNavigation.CalcularCalorias(CantidadIngrediente);
-    }
+    public double CalcularCalorias() => IdIngredienteNavigation.CalcularCalorias(CantidadIngrediente);
 
-    public bool CompararIngrediente(IngredienteCuantitativo ingrediente)
-    {
-        return IdIngredienteNavigation.Nombre.Equals(ingrediente.Nombre);
-    }
+    public bool CompararIngrediente(IngredienteCuantitativo ingrediente) => IdIngredienteNavigation.Nombre.Equals(ingrediente.Nombre);
 
-    public long GrupoAlimentario()
-    {
-        return IdIngredienteNavigation.IdTipo;
-    }
+    public Tipo GrupoAlimentario() => IdIngredienteNavigation.Tipo;
 }
