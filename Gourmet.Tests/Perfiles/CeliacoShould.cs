@@ -3,20 +3,23 @@ using Gourmet;
 using Gourmet.Perfiles;
 using Gourmet.Ingredientes;
 using Gourmet.ContextDB;
+using Gourmet.Services.Contracts;
+using Gourmet.Services;
+using Gourmet.Repositories;
 
 public class CeliacoShould
 {
     [Fact]
-    public void TestRecetaApta()
+    public async void TestRecetaApta()
     {
-        var context = new DBRecetariosContext();
+        IRecetaService recetaService = new RecetaService(new RecetaRepository(new DBRecetariosContext()));
+        IIngredienteRecetaService ingredienteRecetaService = new IngredienteRecetaService(new IngredienteRecetaRepository(new DBRecetariosContext()));
 
         var receta = new Receta()
         {
             Titulo = "Receta50"
         };
-        context.Recetas.Add(receta);
-        context.SaveChanges();
+        await recetaService.Add(receta);
 
         var ingredienteReceta = new IngredientesReceta()
         {
@@ -44,25 +47,26 @@ public class CeliacoShould
             CantidadIngrediente = 2
         };
 
-        context.IngredientesReceta.Add(ingredienteReceta);
-        context.IngredientesReceta.Add(ingredienteReceta2);
-        context.SaveChanges();
+        await ingredienteRecetaService.Add(ingredienteReceta);
+        await ingredienteRecetaService.Add(ingredienteReceta2);
 
         IPerfil celiaco = new Celiaco();
         var apta = celiaco.RecetaApta(receta);
         Assert.True(apta);
     }
+
     [Fact]
-    public void TestRecetaNoApta()
+    public async void TestRecetaNoApta()
     {
-        var context = new DBRecetariosContext();
+        IRecetaService recetaService = new RecetaService(new RecetaRepository(new DBRecetariosContext()));
+        IIngredienteRecetaService ingredienteRecetaService = new IngredienteRecetaService(new IngredienteRecetaRepository(new DBRecetariosContext()));
 
         var receta = new Receta()
         {
             Titulo = "Receta50"
         };
-        context.Recetas.Add(receta);
-        context.SaveChanges();
+
+        await recetaService.Add(receta);
 
         var ingredienteReceta = new IngredientesReceta()
         {
@@ -90,9 +94,8 @@ public class CeliacoShould
             CantidadIngrediente = 2
         };
 
-        context.IngredientesReceta.Add(ingredienteReceta);
-        context.IngredientesReceta.Add(ingredienteReceta2);
-        context.SaveChanges();
+        await ingredienteRecetaService.Add(ingredienteReceta);
+        await ingredienteRecetaService.Add(ingredienteReceta2);
 
         IPerfil celiaco = new Celiaco();
         var Noapta = celiaco.RecetaApta(receta);

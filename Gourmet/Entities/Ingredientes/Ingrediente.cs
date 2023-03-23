@@ -16,5 +16,5 @@ public partial class Ingrediente
 
     public virtual ICollection<IngredientesReceta> IngredientesReceta { get; set; }
 
-    public long CalcularCalorias() => Calorias;
+    public long CalcularCalorias(double cantidadIngrediente) => Calorias;
 }
