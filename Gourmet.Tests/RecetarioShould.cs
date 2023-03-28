@@ -1,111 +1,99 @@
-using Xunit;
 using Gourmet;
-using System;
 using Gourmet.Repositories;
-using Gourmet.Repositories.Contracts;
 using Gourmet.ContextDB;
+using Gourmet.Services.Contracts;
+using Gourmet.Services;
 
-public class RecetarioShould 
+public class RecetarioShould
 {
-    [Fact]
-    async public void TestCrearRecetario()
-    {
-        IRecetarioRepository recetarioRepository = new RecetarioRepository(new DBRecetariosContext());
 
+    private readonly IRecetarioService _recetarioService = new RecetarioService(new RecetarioRepository(new DBRecetariosContext()));
+
+    [Fact]
+    public async void TestCrearRecetario()
+    {
         var recetario = new Recetario()
         {
             Titulo = "Recetario1"
         };
-        recetarioRepository.InsertRecetario(recetario);
+        await _recetarioService.Add(recetario);
 
-        Assert.Equal(1, recetarioRepository.Save());
-        
+        var leerRecetario = await _recetarioService.GetById(recetario.Id);
+
+
+        Assert.Equal("Recetario1", leerRecetario.Titulo);
     }
 
     [Fact]
-    public void TestActualizarRecetario()
+    public async void TestActualizarRecetario()
     {
-        IRecetarioRepository recetarioRepository = new RecetarioRepository(new DBRecetariosContext());
-
         var recetario = new Recetario()
         {
             Titulo = "Recetario2"
         };
-        recetarioRepository.InsertRecetario(recetario);
-        recetarioRepository.Save();
 
+        await _recetarioService.Add(recetario);
+
+        var idRecetario = recetario.Id;
         recetario.Titulo = "RECETARIO2";
 
-        recetarioRepository.UpdateRecetario(recetario);
-        Assert.Equal(1, recetarioRepository.Save());
+        await _recetarioService.Update(recetario);
+
+        var leerRecetario = await _recetarioService.GetById(idRecetario);
+
+        Assert.Equal("RECETARIO2", leerRecetario.Titulo);
     }
 
     [Fact]
-    public void TestLeerRecetario()
+    public async void TestLeerRecetario()
     {
-        IRecetarioRepository recetarioRepository = new RecetarioRepository(new DBRecetariosContext());
-
         var recetario = new Recetario()
         {
             Titulo = "Recetario3"
         };
-        recetarioRepository.InsertRecetario(recetario);
-        recetarioRepository.Save();
+        await _recetarioService.Add(recetario);
 
-        var LeerRecetario = recetarioRepository.GetRecetarioByTitle(recetario.Titulo);
+        var leerRecetario = await _recetarioService.GetById(recetario.Id);
 
-        Assert.Equal("Recetario3", LeerRecetario.Titulo);
+        Assert.Equal("Recetario3", leerRecetario.Titulo);
     }
 
     [Fact]
-    public void TestEliminarRecetario()
+    public async void TestEliminarRecetario()
     {
-        IRecetarioRepository recetarioRepository = new RecetarioRepository(new DBRecetariosContext());
-
         var recetario = new Recetario()
         {
             Titulo = "Recetario4"
         };
-        recetarioRepository.InsertRecetario(recetario);
-        recetarioRepository.Save();
+        await _recetarioService.Add(recetario);
 
-        var deleteRecetario = recetarioRepository.GetRecetarioByTitle(recetario.Titulo);
+        var id = recetario.Id;
 
-        recetarioRepository.DeleteRecetario((long)deleteRecetario.Id);
-        Assert.Equal(1, recetarioRepository.Save());
+        var deleteRecetario = await _recetarioService.GetById(recetario.Id);
+
+        await _recetarioService.Delete(deleteRecetario.Id);
+
+        var leerRecetario = await _recetarioService.GetById(id);
+
+        Assert.Null(leerRecetario);
     }
 
     [Fact]
-    public void TestCantidadRecetas()
+    public async void TestCantidadRecetas()
     {
-        var context = new DBRecetariosContext();
-
         var recetario = new Recetario()
         {
-            Titulo = "Recetario5"
+            Titulo = "Recetario5",
+            Recetas = {
+                    new Receta() {
+                        Titulo = "Receta5"
+                    },
+                    new Receta(){
+                        Titulo = "Receta6"
+                    }
+                }
         };
-        context.Recetarios.Add(recetario);
-        context.SaveChanges();
-
-        var recetarioRecetas = new RecetasRecetario()
-        {
-            IdRecetario = recetario.Id,
-            IdRecetaNavigation = new Receta()
-            {
-                Titulo = "Receta5"
-            }
-        };
-        var recetarioRecetas2 = new RecetasRecetario()
-        {
-            IdRecetario = recetario.Id,
-            IdRecetaNavigation = new Receta()
-            {
-                Titulo = "Receta5"
-            }
-        };
-        context.RecetasRecetarios.Add(recetarioRecetas);
-        context.RecetasRecetarios.Add(recetarioRecetas2);
-        context.SaveChanges();
+        await _recetarioService.Add(recetario);
 
         int cantidad = recetario.CantidadRecetas();
 

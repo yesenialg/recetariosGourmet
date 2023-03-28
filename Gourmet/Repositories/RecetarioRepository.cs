@@ -1,30 +1,14 @@
 ﻿using Gourmet.ContextDB;
 using Gourmet.Repositories.Contracts;
-using Microsoft.EntityFrameworkCore;
 
 namespace Gourmet.Repositories
 {
-    public class RecetarioRepository : IRecetarioRepository
+    public class RecetarioRepository : GenericRepository<Recetario>, IRecetarioRepository
     {
-        private DBRecetariosContext context;
+        private readonly DBRecetariosContext _context;
 
-        public RecetarioRepository(DBRecetariosContext context)
-        {
-            this.context = context;
-        }
+        public RecetarioRepository(DBRecetariosContext context) : base (context){}
 
-        public void DeleteRecetario(long recetarioID) => context.Recetarios.Remove(context.Recetarios.Find(recetarioID));
-
-        public Recetario GetRecetarioByID(int id) => context.Recetarios.Find(id);
-
-        public Recetario GetRecetarioByTitle(string recetarioTitle) => context.Recetarios.Where(s => s.Titulo == recetarioTitle).ToList()[0];
-
-        public IEnumerable<Recetario> GetRecetarios() => context.Recetarios.ToList();
-
-        public void InsertRecetario(Recetario recetario) => context.Recetarios.Add(recetario);
-
-        public int Save() => context.SaveChanges();
-
-        public void UpdateRecetario(Recetario recetario) => context.Entry(recetario).State = EntityState.Modified;
+        public Recetario GetRecetarioByTitle(string recetarioTitle) => _context.Recetarios.Where(s => s.Titulo == recetarioTitle).ToList()[0];
     }
 }
