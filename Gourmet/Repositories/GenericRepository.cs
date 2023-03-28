@@ -13,6 +13,10 @@ namespace Gourmet.Repositories
             _context = context;
         }
 
+        public async Task<IEnumerable<T>> GetAll() => await _context.Set<T>().ToListAsync();
+
+        public async Task<T> GetById(long id) => await _context.Set<T>().FindAsync(id);
+
         public async Task<T> Add(T entity)
         {
             _context.Set<T>().Add(entity);
@@ -30,16 +34,6 @@ namespace Gourmet.Repositories
             }
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<T>> GetAll()
-        {
-            return await _context.Set<T>().ToListAsync();
-        }
-
-        public async Task<T> GetById(long id)
-        {
-            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task<T> Update(T entity)

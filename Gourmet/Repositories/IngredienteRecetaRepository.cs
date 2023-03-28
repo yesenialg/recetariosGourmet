@@ -12,6 +12,6 @@ namespace Gourmet.Repositories
             this._context = context;
         }
 
-        public IEnumerable<IngredientesReceta> GetIngredientesDeReceta(long idReceta) => _context.IngredientesReceta.Where(s => s.IdReceta == idReceta);
+        public IEnumerable<IngredientesReceta> GetIngredientesDeReceta(long idReceta) => _context.IngredientesReceta.Where(s => s.RecetaId == idReceta);
     }
 }

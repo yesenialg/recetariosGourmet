@@ -1,48 +1,25 @@
 namespace Gourmet;
-
-using Gourmet.ContextDB;
 using Gourmet.Ingredientes;
-using Gourmet.Repositories;
-using Gourmet.Services;
-using Gourmet.Services.Contracts;
 using System.Collections.Generic;
 
 public partial class Receta
 {
-    private readonly IIngredienteRecetaService _ingredienteRecetaService = new IngredienteRecetaService(new IngredienteRecetaRepository(new DBRecetariosContext()));
     public Receta()
     {
-        IngredientesReceta = new HashSet<IngredientesReceta>();
-        RecetasRecetario = new HashSet<RecetasRecetario>();
+        Recetarios = new HashSet<Recetario>();
+        Ingredientes = new HashSet<Ingrediente>();
+        IngredientesReceta = new List<IngredientesReceta>();
     }
 
     public long Id { get; set; }
     public string? Titulo { get; set; }
 
-    public virtual ICollection<IngredientesReceta> IngredientesReceta { get; set; }
-    public virtual ICollection<RecetasRecetario> RecetasRecetario { get; set; }
+    public virtual List<IngredientesReceta> IngredientesReceta { get; set; }
+    public virtual ICollection<Ingrediente> Ingredientes { get; set; }
 
-    public int CantidadIngredientes()
-    {
-        var ingredientes = _ingredienteRecetaService.GetIngredientesDeReceta(Id);
-        return ingredientes.Count();
-    }
+    public virtual ICollection<Recetario> Recetarios { get; set; }
 
-    public double CantidadCalorias()
-    {
-        var ingredientes = _ingredienteRecetaService.GetIngredientesDeReceta(Id);
-        return ingredientes.Sum(ingrediente => ingrediente.CalcularCalorias());
-    }
+    public double CantidadCalorias() => IngredientesReceta.Sum(ingrediente => ingrediente.CalcularCalorias());
 
-    public bool PresenciaDeIngrediente(IngredienteCuantitativo ingrediente)
-    {
-        var ingredientes = _ingredienteRecetaService.GetIngredientesDeReceta(Id).ToList();
-        return ingredientes.Any(i => i.CompararIngrediente(ingrediente).Result);
-    }
 
-    public bool PresenciaDeGrupoAlimenticio(Tipo grupo)
-    {
-        var ingredientes = _ingredienteRecetaService.GetIngredientesDeReceta(Id).ToList();
-        return ingredientes.Any(ingrediente => ingrediente.GrupoAlimentario().Result.Equals(grupo));
-    }
 }

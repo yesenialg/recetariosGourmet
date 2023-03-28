@@ -1,32 +1,24 @@
 ﻿namespace Gourmet;
 
-using Gourmet.ContextDB;
 using Gourmet.Ingredientes;
-using Gourmet.Repositories;
-using Gourmet.Services;
-using Gourmet.Services.Contracts;
+using SQLitePCL;
 
 public partial class IngredientesReceta
 {
-    private readonly IIngredienteService _ingredienteService = new IngredienteService(new IngredienteRepository(new DBRecetariosContext()));
     public long Id { get; set; }
-    public long IdIngrediente { get; set; }
     public double CantidadIngrediente { get; set; }
-    public long IdReceta { get; set; }
 
-    public virtual IngredienteCuantitativo? IdIngredienteNavigation { get; set; }
-    public virtual Receta? IdRecetaNavigation { get; set; }
+    public Ingrediente Ingrediente { get; set; }
+    public Receta Receta { get; set; }
 
-    public double CalcularCalorias()
-    {
-        Ingrediente ingrediente = _ingredienteService.GetById(IdIngrediente).Result;
-        return ingrediente .CalcularCalorias(CantidadIngrediente);
-    }
+    public virtual long IngredienteId { get; set; }
+    public virtual long? RecetaId { get; set; }
 
-    public async Task<bool> CompararIngrediente(IngredienteCuantitativo ingrediente) => (await _ingredienteService.GetById(IdIngrediente)).Nombre.Equals(ingrediente.Nombre);
+    public double CalcularCalorias() => Ingrediente.CalcularCalorias(CantidadIngrediente);
 
-    public async Task<Tipo> GrupoAlimentario()
-    {
-        return (await _ingredienteService.GetById(IdIngrediente)).Tipo;
-    }
+    public bool PresenciaDeIngrediente(Ingrediente ingrediente) => Ingrediente.Nombre.Equals(ingrediente.Nombre);
+
+    public bool PresenciaDeGrupoAlimenticio(Tipo grupo) => Ingrediente.Tipo.Equals(grupo);
+
+
 }

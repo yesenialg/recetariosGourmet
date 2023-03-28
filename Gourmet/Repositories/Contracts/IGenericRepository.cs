@@ -1,5 +1,4 @@
-﻿
-namespace Gourmet.Repositories.Contracts
+﻿namespace Gourmet.Repositories.Contracts
 {
     public interface IGenericRepository<T> where T : class
     {
