@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Gourmet;
-using GourmetApi.Repositories.Contracts;
-using GourmetApi.Repositories;
+using Gourmet.Services.Contracts;
 
 namespace GourmetApi.Controllers
 {
@@ -10,21 +8,20 @@ namespace GourmetApi.Controllers
     public class RecetarioController : Controller
     {
         private readonly ILogger<RecetarioController> _logger;
-        private IRecetarioRepository recetarioRepository;
-        public RecetarioController(ILogger<RecetarioController> logger)
+        private readonly IRecetarioService _recetarioService;
+
+        public RecetarioController(ILogger<RecetarioController> logger, IRecetarioService recetarioService)
         {
             _logger = logger;
-            this.recetarioRepository = new RecetarioRepository(new DBRecetariosContext());
+            _recetarioService = recetarioService;
         }
 
-        [HttpGet(Name = "GetRecetarios")]
+        [HttpGet("GetRecetarios")]
         public IActionResult GetAll()
         {
             try
             {
-                var context = new DBRecetariosContext();
-
-                var recetarios = recetarioRepository.GetRecetarios();
+                var recetarios = _recetarioService.GetAll();
 
                 _logger.LogInformation($"Retorna todos los recetarios");
 
@@ -37,27 +34,13 @@ namespace GourmetApi.Controllers
             }
 
         }
-    }
 
-    [Route("api/RecetasDeRecetario")]
-    public class RecetasRecetarioController : Controller
-    {
-        private readonly ILogger<RecetarioController> _logger;
-        private IRecetarioRepository recetarioRepository;
-        public RecetasRecetarioController(ILogger<RecetarioController> logger)
-        {
-            _logger = logger;
-            this.recetarioRepository = new RecetarioRepository(new DBRecetariosContext());
-        }
-
-        [HttpGet(Name = "GetRecetasDeRecetario")]
-        public IActionResult GetReecetasDeRecetario(int id)
+        [HttpGet("GetRecetasDeRecetario")]
+        public IActionResult GetReecetasDeRecetario(long id)
         {
             try
             {
-                var context = new DBRecetariosContext();
-
-                var recetasRecetario = recetarioRepository.RecetasDeUnRecetario(id);
+                var recetasRecetario = _recetarioService.RecetasDeUnRecetario(id);
 
                 _logger.LogInformation($"Retorna todos las recetas del recetario");
 
@@ -71,4 +54,5 @@ namespace GourmetApi.Controllers
 
         }
     }
+
 }
