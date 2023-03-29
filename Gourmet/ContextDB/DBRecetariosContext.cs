@@ -22,8 +22,6 @@ public partial class DBRecetariosContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            //var value = ConfigurationSettings.AppSettings["Connection"];
-            //optionsBuilder.UseSqlite(value);
             optionsBuilder.UseSqlite("Data Source=C:\\Users\\ylopez\\AppData\\Local\\DBRecetarios.db");
         }
     }

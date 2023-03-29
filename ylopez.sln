@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{5E2C22
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C06BACCE-85BD-4EE1-86B4-326F51D9033E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GourmetApi", "GourmetApi\GourmetApi.csproj", "{2AB6BF38-DF5A-48DE-8777-62CB95C81175}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GourmetApi", "GourmetApi\GourmetApi.csproj", "{2AB6BF38-DF5A-48DE-8777-62CB95C81175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +27,10 @@ Global
 		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
