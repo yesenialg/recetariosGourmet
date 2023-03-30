@@ -1,5 +1,4 @@
 ﻿namespace Gourmet;
-
 using Gourmet.Ingredientes;
 using SQLitePCL;
 
