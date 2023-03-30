@@ -95,8 +95,6 @@ public class RecetarioShould
         };
         await _recetarioService.Add(recetario);
 
-        int cantidad = recetario.CantidadRecetas();
-
-        Assert.Equal(2, cantidad);
+        Assert.Equal(2, recetario.CantidadRecetas());
     }
 }
