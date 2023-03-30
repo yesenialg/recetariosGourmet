@@ -1,45 +1,65 @@
-﻿using Xunit;
-using Gourmet;
+﻿using Gourmet;
+using Gourmet.Perfiles;
+using Gourmet.Ingredientes;
+using Gourmet.ContextDB;
+using Gourmet.Repositories;
+using Gourmet.Services.Contracts;
+using Gourmet.Services;
+
 public class CarnivoroShould
 {
-    [Fact]
-    public void TestRecetaApta()
-    {
-        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
-        var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
+    private readonly IIngredienteRecetaService _ingredienteRecetaService = new IngredienteRecetaService(new IngredienteRecetaRepository(new DBRecetariosContext()));
 
-        var ingredientes1 = new List<IngredienteCantidad>
+    [Fact]
+    public async void TestRecetaApta()
+    {
+        var ingredienteReceta = new IngredientesReceta()
         {
-            new IngredienteCantidad(pechuga, 1),
-            new IngredienteCantidad(mani, 2),
-            new IngredienteCantidad(arroz, 1),
-            new IngredienteCantidad(brocoli, 1),
+            Ingrediente = new IngredienteCuantitativo()
+            {
+                Nombre = "Pechuga",
+                Calorias = 500,
+                Tipo = Tipo.carnes,
+                Unidad = Unidad.unidad,
+            },
+            Receta = new Receta() {
+                Titulo = "Receta50",
+            },
+            CantidadIngrediente = 1
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+
+        await _ingredienteRecetaService.Add(ingredienteReceta);
 
         IPerfil carnivoro = new Carnivoro();
-        var apta = carnivoro.RecetaApta(receta1);
+        var apta = carnivoro.RecetaApta(ingredienteReceta.Receta);
+
         Assert.True(apta);
     }
 
     [Fact]
-    public void TestRecetaNoApta()
+    public async void TestRecetaNoApta()
     {
-        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
-
-        var ingredientes1 = new List<IngredienteCantidad>
+        var ingredienteReceta2 = new IngredientesReceta()
         {
-            new IngredienteCantidad(mani, 2),
-            new IngredienteCantidad(arroz, 1),
-            new IngredienteCantidad(brocoli, 1),
+            Ingrediente = new IngredienteCuantitativo()
+            {
+                Nombre = "Leche",
+                Calorias = 20,
+                Tipo = Tipo.lacteos,
+                Unidad = Unidad.unidad,
+            },
+            Receta = new Receta()
+            {
+                Titulo = "Receta50",
+            },
+            CantidadIngrediente = 2
         };
-        var receta1 = new Receta("Receta1", ingredientes1);
+
+        await _ingredienteRecetaService.Add(ingredienteReceta2);
+
         IPerfil carnivoro = new Carnivoro();
-        var Noapta = carnivoro.RecetaApta(receta1);
+        var Noapta = carnivoro.RecetaApta(ingredienteReceta2.Receta);
+
         Assert.False(Noapta);
     }
 }

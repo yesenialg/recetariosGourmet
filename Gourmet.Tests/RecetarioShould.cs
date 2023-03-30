@@ -1,38 +1,99 @@
-using Xunit;
 using Gourmet;
+using Gourmet.Repositories;
+using Gourmet.ContextDB;
+using Gourmet.Services.Contracts;
+using Gourmet.Services;
 
-public class RecetarioShould 
+public class RecetarioShould
 {
 
+    private readonly IRecetarioService _recetarioService = new RecetarioService(new RecetarioRepository(new DBRecetariosContext()));
+
     [Fact]
-    public void TestCantidadRecetas()
+    public async void TestCrearRecetario()
     {
-        var mani = new IngredienteCuantitativo("Mani", 5, Unidad.gramos, Tipo.cereales);
-        var arroz = new IngredienteCuantitativo("Arroz", 180, Unidad.libra, Tipo.cereales);
-        var brocoli = new IngredienteCuantitativo("Brocoli", 145, Unidad.unidad, Tipo.vegetales);
-        var pechuga = new IngredienteCuantitativo("Pechuga", 115, Unidad.unidad, Tipo.carnes);
-        var cebolla = new IngredienteCuantitativo("Cebolla", 95, Unidad.unidad, Tipo.legumbres);
-
-        
-        var ingredientes1 = new List<IngredienteCantidad>
+        var recetario = new Recetario()
         {
-            new IngredienteCantidad(mani, 10),
-            new IngredienteCantidad(arroz, 0.5),
-            new IngredienteCantidad(brocoli, 1),
+            Titulo = "Recetario1"
+        };
+        await _recetarioService.Add(recetario);
+
+        var leerRecetario = await _recetarioService.GetById(recetario.Id);
+
+
+        Assert.Equal("Recetario1", leerRecetario.Titulo);
+    }
+
+    [Fact]
+    public async void TestActualizarRecetario()
+    {
+        var recetario = new Recetario()
+        {
+            Titulo = "Recetario2"
         };
 
-        var receta1 = new Receta("Receta1", ingredientes1);
+        await _recetarioService.Add(recetario);
 
-        var ingredientes2 = new List<IngredienteCantidad>
+        var idRecetario = recetario.Id;
+        recetario.Titulo = "RECETARIO2";
+
+        await _recetarioService.Update(recetario);
+
+        var leerRecetario = await _recetarioService.GetById(idRecetario);
+
+        Assert.Equal("RECETARIO2", leerRecetario.Titulo);
+    }
+
+    [Fact]
+    public async void TestLeerRecetario()
+    {
+        var recetario = new Recetario()
         {
-            new IngredienteCantidad(pechuga, 1),
-            new IngredienteCantidad(cebolla, 1),
-            new IngredienteCantidad(brocoli, 1),
+            Titulo = "Recetario3"
         };
-        var receta2 = new Receta("Receta1", ingredientes2);
+        await _recetarioService.Add(recetario);
 
-        List<Receta> recetas = new() { receta1, receta2 };
-        var recetario = new Recetario("Recetario1", recetas);
+        var leerRecetario = await _recetarioService.GetById(recetario.Id);
+
+        Assert.Equal("Recetario3", leerRecetario.Titulo);
+    }
+
+    [Fact]
+    public async void TestEliminarRecetario()
+    {
+        var recetario = new Recetario()
+        {
+            Titulo = "Recetario4"
+        };
+        await _recetarioService.Add(recetario);
+
+        var id = recetario.Id;
+
+        var deleteRecetario = await _recetarioService.GetById(recetario.Id);
+
+        await _recetarioService.Delete(deleteRecetario.Id);
+
+        var leerRecetario = await _recetarioService.GetById(id);
+
+        Assert.Null(leerRecetario);
+    }
+
+    [Fact]
+    public async void TestCantidadRecetas()
+    {
+        var recetario = new Recetario()
+        {
+            Titulo = "Recetario5",
+            Recetas = {
+                    new Receta() {
+                        Titulo = "Receta5"
+                    },
+                    new Receta(){
+                        Titulo = "Receta6"
+                    }
+                }
+        };
+        await _recetarioService.Add(recetario);
 
         Assert.Equal(2, recetario.CantidadRecetas());
     }
