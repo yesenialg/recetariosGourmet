@@ -3,7 +3,7 @@ Este backend tiene persistencia de recetas y recetarios en una base de datos en 
 
 # Funcionamiento de la Api
 1.	En la carpeta Gourmet lanzar los siguientes dos comandos para la creación de la base de datos
-- dotnet ef migrations add <nombreDeLaMigracion>
+- dotnet ef migrations add < nombreDeLaMigracion >
 - dotnet ef database update
 2.	En la carpeta recetariosGourmet 
 - dotnet build
