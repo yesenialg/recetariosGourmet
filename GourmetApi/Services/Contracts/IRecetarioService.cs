@@ -4,6 +4,5 @@
     {
         Recetario GetRecetarioByTitle(string recetarioTitle);
 
-        List<ICollection<Receta>> RecetasDeUnRecetario(long id);
     }
 }

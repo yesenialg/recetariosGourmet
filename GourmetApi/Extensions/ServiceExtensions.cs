@@ -17,8 +17,10 @@ namespace GourmetApi.Extensions
             options.UseSqlite(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString));
             
             services.AddTransient<IRecetarioRepository, RecetarioRepository>();
+            services.AddTransient<IRecetaRepository, RecetaRepository>();
 
             services.AddTransient<IRecetarioService, RecetarioService>();
+            services.AddTransient<IRecetaService, RecetaService>();
 
             return services;
         }

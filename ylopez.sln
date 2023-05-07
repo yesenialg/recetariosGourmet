@@ -5,11 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gourmet", "Gourmet\Gourmet.csproj", "{E678110F-3A8F-497D-A9C5-932C337142C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gourmet.Tests", "Gourmet.Tests\Gourmet.Tests.csproj", "{F5C14498-4397-4539-A2AD-8FBAFF34650B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{5E2C22F5-A445-4EDA-86D4-2CD0AB3ECD44}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C06BACCE-85BD-4EE1-86B4-326F51D9033E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GourmetApi", "GourmetApi\GourmetApi.csproj", "{2AB6BF38-DF5A-48DE-8777-62CB95C81175}"
 EndProject
@@ -23,10 +19,6 @@ Global
 		{E678110F-3A8F-497D-A9C5-932C337142C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E678110F-3A8F-497D-A9C5-932C337142C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E678110F-3A8F-497D-A9C5-932C337142C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5C14498-4397-4539-A2AD-8FBAFF34650B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB6BF38-DF5A-48DE-8777-62CB95C81175}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,7 +29,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E678110F-3A8F-497D-A9C5-932C337142C1} = {5E2C22F5-A445-4EDA-86D4-2CD0AB3ECD44}
-		{F5C14498-4397-4539-A2AD-8FBAFF34650B} = {C06BACCE-85BD-4EE1-86B4-326F51D9033E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9C2F812-F383-4594-8431-41C0D931B29F}

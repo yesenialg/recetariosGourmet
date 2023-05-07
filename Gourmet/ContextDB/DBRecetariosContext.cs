@@ -1,6 +1,5 @@
 ﻿namespace Gourmet.ContextDB;
 using Gourmet;
-using Gourmet.Ingredientes;
 using Microsoft.EntityFrameworkCore;
 
 public partial class DBRecetariosContext : DbContext
@@ -12,9 +11,6 @@ public partial class DBRecetariosContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<Ingrediente> Ingredientes { get; set; } = null!;
-    public virtual DbSet<IngredienteCuantitativo> IngredienteCuantitativo { get; set; } = null!;
-    public virtual DbSet<IngredientesReceta> IngredientesReceta { get; set; } = null!;
     public virtual DbSet<Recetario> Recetarios { get; set; } = null!;
     public virtual DbSet<Receta> Recetas { get; set; } = null!;
 
@@ -22,35 +18,13 @@ public partial class DBRecetariosContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlite("Data Source=C:\\Users\\ylopez\\AppData\\Local\\DBRecetarios.db");
+            optionsBuilder.UseSqlite("Data Source=C:\\Users\\ylopez\\AppData\\Local\\DBRecetariosEnfasis.db");
         }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Ingrediente>(entity =>
-        {
-            entity.ToTable("Ingredientes");
-        });
-
-
-        modelBuilder.Entity<Receta>()
-            .HasMany(p => p.Ingredientes)
-            .WithMany(p => p.Recetas)
-            .UsingEntity<IngredientesReceta>(
-                j => j
-                    .HasOne(pt => pt.Ingrediente)
-                    .WithMany(t => t.IngredientesReceta)
-                    .HasForeignKey(pt => pt.IngredienteId),
-                j => j
-                    .HasOne(pt => pt.Receta)
-                    .WithMany(p => p.IngredientesReceta)
-                    .HasForeignKey(pt => pt.RecetaId),
-                j =>
-                {
-                    j.Property(pt => pt.CantidadIngrediente);
-                    j.HasKey(t => new { t.RecetaId, t.IngredienteId });
-                });
+        modelBuilder.Entity<Receta>();
 
         modelBuilder.Entity<Recetario>(entity =>
         {

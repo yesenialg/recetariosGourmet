@@ -14,6 +14,5 @@ namespace Gourmet.Services
 
         public Recetario GetRecetarioByTitle(string recetarioTitle) => _repository.GetRecetarioByTitle(recetarioTitle);
 
-        public List<ICollection<Receta>> RecetasDeUnRecetario(long id) => _repository.RecetasDeUnRecetario(id);
     }
 }
