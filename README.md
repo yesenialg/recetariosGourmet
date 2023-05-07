@@ -7,7 +7,7 @@ Este backend tiene persistencia de recetas y recetarios en una base de datos en 
 - dotnet ef database update
 2.	En la carpeta recetariosGourmet 
 - dotnet build
-3.	Correr la app
+3.	Correr el proyecto GourmetApi
 
 # Inyección de dependencias
 Se utiliza el IServiceCollection en el archivo GourmetApi/Extensions/ServiceExtensions.cs donde se crean los Transient de las clases a crear:
